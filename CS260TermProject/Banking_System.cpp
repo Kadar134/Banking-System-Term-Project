@@ -6,6 +6,7 @@ using namespace std;
 
 int main()
 {
+	//hello
 	//Customer customerList[5];
 
 	int opt;
