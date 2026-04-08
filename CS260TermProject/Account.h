@@ -1,6 +1,8 @@
 #pragma once
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
+#include "Customer.h"
+using namespace std;
 
 //Account class
 class Account {
