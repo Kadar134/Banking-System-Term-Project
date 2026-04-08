@@ -8,15 +8,15 @@ class SavingAccount : Account {
 	double interestRate;
 
 public:
+	SavingAccount();
+	SavingAccount(int _id, double _balance, Customer* _customerAccount, double _interestRate);
+	
 	void setInterestRate(double _interestRate);
 	void setAll(int _id, double _balance, Customer* _customerAccount, double _interestRate);
 	double getInterestRate() const;
 
 	void payInterest();
 	void transfer(double amount, SavingAccount destinationAccount);
-
-	SavingAccount();
-	SavingAccount(int _id, double _balance, Customer* _customerAccount, double _interestRate);
 };
 
 #endif // !_SAVINGS_ACCOUNT_
