@@ -4,10 +4,6 @@
 #include "Account.h"
 using namespace std;
 
-//Not initialziing these in the header file because that doesn't work
-int Account::withdrawalCounter = 0; 
-int Account::depositsCounter = 0;
-
 void Account::setid(int _id) 
 {
 	if (_id < 0)
