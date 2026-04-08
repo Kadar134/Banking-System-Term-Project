@@ -4,7 +4,7 @@
 #include "Account.h"
 using namespace std;
 
-void Account::setid(int _id) 
+void Account::setid(int _id)
 {
 	if (_id < 0)
 	{
@@ -16,7 +16,7 @@ void Account::setid(int _id)
 	}
 }
 
-void Account::setBalance(double _balance) 
+void Account::setBalance(double _balance)
 {
 	if (_balance < 0)
 	{
@@ -31,7 +31,7 @@ void Account::setBalance(double _balance)
 void Account::setWithDrawCounter(int _withdrawCounter)
 {
 	withdrawalCounter = _withdrawCounter;
-	
+
 }
 
 void Account::setDepositCounter(int _depositCounter)
@@ -39,7 +39,7 @@ void Account::setDepositCounter(int _depositCounter)
 	depositsCounter = _depositCounter;
 }
 
-void Account::setAccount(Customer* account) { 
+void Account::setAccount(Customer* account) {
 	accountCustomer = account;
 }
 
@@ -69,11 +69,11 @@ Account::Account() {
 	balance = 0;
 	withdrawalCounter = 0;
 	depositsCounter = 0;
-	customerAccount = nullptr;
+	accountCustomer = nullptr;
 }
 
 //Parameterized
-Account::Account(int _id, double _balance, Customer* _customerAccount) 
+Account::Account(int _id, double _balance, Customer* _customerAccount)
 {
 	if (_id < 0)
 	{
@@ -83,7 +83,7 @@ Account::Account(int _id, double _balance, Customer* _customerAccount)
 	{
 		id = _id;
 	}
-	
+
 	if (_balance < 0)
 	{
 		balance = 0;
@@ -94,14 +94,14 @@ Account::Account(int _id, double _balance, Customer* _customerAccount)
 	}
 
 	//These are set to 0 because they're counters
-	withdrawalCounter = 0; 
+	withdrawalCounter = 0;
 	depositsCounter = 0;
 
-	customerAccount = _customerAccount;
+	accountCustomer = _customerAccount;
 }
 
 
-void Account::setAll(int _id, double _balance, Customer* _accountCustomer) 
+void Account::setAll(int _id, double _balance, Customer* _accountCustomer)
 {
 	if (_id < 0)
 	{
