@@ -11,8 +11,8 @@ public:
 	void setOverDraftLimit(double _overDraftLimit);
 	double getOverDraftLimit() const;
 
-	CheckingAccount() : Account();
-	CheckingAccount(int _id, double _balance, Customer* _customerAccount, double _overDraftLimit) : Account(_id, _balance, _customerAccount);
+	CheckingAccount();
+	CheckingAccount(int _id, double _balance, Customer* _customerAccount, double _overDraftLimit);
 };
 
 
