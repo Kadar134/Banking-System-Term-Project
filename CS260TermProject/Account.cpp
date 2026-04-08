@@ -69,10 +69,11 @@ Account::Account() {
 	balance = 0;
 	withdrawalCounter = 0;
 	depositsCounter = 0;
+	customerAccount = nullptr;
 }
 
 //Parameterized
-Account::Account(int _id, double _balance) 
+Account::Account(int _id, double _balance, Customer* _customerAccount) 
 {
 	if (_id < 0)
 	{
@@ -95,10 +96,12 @@ Account::Account(int _id, double _balance)
 	//These are set to 0 because they're counters
 	withdrawalCounter = 0; 
 	depositsCounter = 0;
+
+	customerAccount = _customerAccount;
 }
 
 
-void Account::setAll(int _id, double _balance, Customer* account) 
+void Account::setAll(int _id, double _balance, Customer* _accountCustomer) 
 {
 	if (_id < 0)
 	{
@@ -109,7 +112,7 @@ void Account::setAll(int _id, double _balance, Customer* account)
 		id = _id;
 	}
 	balance = _balance;
-	accountCustomer = account;
+	accountCustomer = _accountCustomer;
 	//No reason to set the counters to 0 because you're not manually setting those to anything
 }
 
