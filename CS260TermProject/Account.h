@@ -6,7 +6,8 @@
 class Account {
 	int id;
 	double balance;
-	static int withdrawalCounter, depositsCounter;
+	int withdrawalCounter = 0;
+	int depositsCounter = 0;
 	Customer* accountCustomer;
 public:
 	//Setters
@@ -31,7 +32,7 @@ public:
 	void printInfo();
 
 	Account();
-	Account(int _id, double _balance);
+	Account(int _id, double _balance, Customer* _accountCustomer);
 };
 
 #endif // !ACCOUNT_H
