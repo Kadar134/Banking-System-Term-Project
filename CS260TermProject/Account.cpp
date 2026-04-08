@@ -146,15 +146,21 @@ void Account::withdrawMoney(double amount) {
 
 
 void Account::printInfo() {
-	cout << "Retrieved Banking Information for: ";
-	cout << accountCustomer->getFname() << " " << accountCustomer->getLname() << endl;
+	if (accountCustomer != nullptr) {
+		cout << "Retrieved Banking Information for: ";
+		cout << accountCustomer->getFname() << " " << accountCustomer->getLname() << endl;
 
-	accountCustomer->PrintInfo();
-	cout << "Bank ID: " << id << endl;
+		accountCustomer->printInfo();
 
-	cout << "Current Balance: $";
-	cout << fixed << showpoint << setprecision(2) << balance << endl;
+		cout << "Bank ID: " << id << endl;
 
-	cout << "Withdraws Made: " << withdrawalCounter << endl;
-	cout << "Deposits Made: " << depositsCounter << endl;
+		cout << "Current Balance: $";
+		cout << fixed << showpoint << setprecision(2) << balance << endl;
+
+		cout << "Withdraws Made: " << withdrawalCounter << endl;
+		cout << "Deposits Made: " << depositsCounter << endl;
+	}
+
+	else
+		cout << "No customer assigned." << endl;
 }
