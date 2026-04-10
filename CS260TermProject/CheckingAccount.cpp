@@ -3,17 +3,6 @@
 #include <iostream>
 using namespace std;
 
-void CheckingAccount::setOverDraftLimit(double _overDraftLimit) {
-	if (_overDraftLimit >= 0)
-		overDraftLimit = _overDraftLimit;
-	else
-		overDraftLimit = 0;
-}
-
-double CheckingAccount::getOverDraftLimit() const {
-	return overDraftLimit;
-}
-
 CheckingAccount::CheckingAccount() : Account() {
 	overDraftLimit = 0;
 }
@@ -23,4 +12,15 @@ CheckingAccount::CheckingAccount(int _id, double _balance, Customer* _customerAc
 		overDraftLimit = _overDraftLimit;
 	else
 		overDraftLimit = 0;
+}
+
+void CheckingAccount::setOverDraftLimit(double _overDraftLimit) {
+	if (_overDraftLimit >= 0)
+		overDraftLimit = _overDraftLimit;
+	else
+		overDraftLimit = 0;
+}
+
+double CheckingAccount::getOverDraftLimit() const {
+	return overDraftLimit;
 }
