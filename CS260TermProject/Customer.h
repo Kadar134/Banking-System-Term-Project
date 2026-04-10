@@ -1,10 +1,7 @@
 #pragma once
+#ifndef _CUSTOMER_
+#define _CUSTOMER_
 #include <string>
-using namespace std;
-
-#ifndef CUSTOMER_H
-#define CUSTOMER_H
-
 
 //Customer class
 class Customer {
@@ -12,6 +9,10 @@ class Customer {
 	int phone;
 	string email;
 public:
+	//Constructors
+	Customer();
+	Customer(string _fname, string _lname, string _address, int _phone, string _email);
+
 	//Setters
 	void setFname(string _fname);
 	void setLname(string _fname);
@@ -26,15 +27,11 @@ public:
 	int getPhone() const;
 	string getEmail() const;
 
-	//Constructors
-	Customer();
-	Customer(string _fname, string _lname, string _address, int _phone, string _email);
-
 	//SetAll
 	void setAll(string _fname, string _lname, string _address, int _phone, string _email);
 
 	//Print
-	void PrintInfo();
+	void printInfo();
 };
 
-#endif // CUSTOMER_H
+#endif // !_CUSTOMER_
