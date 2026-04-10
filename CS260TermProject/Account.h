@@ -1,25 +1,44 @@
 #pragma once
-#ifndef _SAVINGS_ACCOUNT_
-#define _SAVINGS_ACCOUNT_
-#include "Account.h"
+#ifndef ACCOUNT_H
+#define ACCOUNT_H
+#include "Customer.h"
 using namespace std;
 
-class SavingAccount : Account {
-	double interestRate;
-
+//Account class
+class Account {
+	int id;
+	int withdrawalCounter = 0;
+	int depositsCounter = 0;
+	Customer* accountCustomer;
+protected:
+	double balance;
 public:
 	// Constructors
-	SavingAccount();
-	SavingAccount(int _id, double _balance, Customer* _customerAccount, double _interestRate);
-	
-	// Setters and Getter
-	void setInterestRate(double _interestRate);
-	void setAll(int _id, double _balance, Customer* _customerAccount, double _interestRate);
-	double getInterestRate() const;
+	Account();
+	Account(int _id, double _balance, Customer* _accountCustomer);
 
-	// Internal processees
-	void payInterest();
-	void transfer(double amount, SavingAccount destinationAccount);
+	//Setters
+	void setid(int _id);
+	void setBalance(double _balance);
+	void setAccount(Customer* account);
+	void setWithDrawCounter(int _withdrawCounter);
+	void setDepositCounter(int _depositCounter);
+	void setAll(int _id, double _balance, Customer* account);
+
+	//Getters
+	int getid() const;
+	double getBalance() const;
+	Customer* getCustomer() const;
+	int getWithdrawCounter() const;
+	int getDepositCounter() const;
+
+	// Print
+	void printInfo();
+
+	// Deposit & Withdraw
+	void depositMoney(double amount);
+	void withdrawMoney(double amount);
+
 };
 
-#endif // !_SAVINGS_ACCOUNT_
+#endif // !ACCOUNT_H
