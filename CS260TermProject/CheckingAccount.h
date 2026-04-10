@@ -15,6 +15,4 @@ public:
 	CheckingAccount(int _id, double _balance, Customer* _customerAccount, double _overDraftLimit);
 };
 
-
-
 #endif // !_CHECKING_ACCOUNT_
