@@ -1,45 +1,161 @@
 #include <iostream>
-#include "SavingAccount.h"
+#include <iomanip>
+#include "Customer.h"
+#include "Account.h"
 using namespace std;
 
-// Constructors
-SavingAccount::SavingAccount() : Account() {
-	interestRate = 0;
+//Default
+Account::Account() {
+	id = 0;
+	balance = 0;
+	withdrawalCounter = 0;
+	depositsCounter = 0;
+	accountCustomer = nullptr;
 }
 
-SavingAccount::SavingAccount(int _id, double _balance, Customer* _customerAccount, double _interestRate) : Account(_id, _balance, _customerAccount) {
-	if (_interestRate > 0)
-		interestRate = _interestRate;
+//Parameterized
+Account::Account(int _id, double _balance, Customer* _customerAccount)
+{
+	if (_id < 0)
+	{
+		id = 0;
+	}
 	else
-		interestRate = 0;
-}
+	{
+		id = _id;
+	}
 
-// Setters
-void SavingAccount::setInterestRate(double _interestRate) {
-	if (_interestRate > 0)
-		interestRate = _interestRate;
+	if (_balance < 0)
+	{
+		balance = 0;
+	}
 	else
-		interestRate = 0;
+	{
+		balance = _balance;
+	}
+
+	//These are set to 0 because they're counters
+	withdrawalCounter = 0;
+	depositsCounter = 0;
+
+	accountCustomer = _customerAccount;
 }
 
-void SavingAccount::setAll(int _id, double _balance, Customer* _customerAccount, double _interestRate) {
-	Account::setAll(_id, _balance, _customerAccount);
-
-	if (_interestRate > 0)
-		interestRate = _interestRate;
+void Account::setid(int _id)
+{
+	if (_id < 0)
+	{
+		id = 0;
+	}
 	else
-		interestRate = 0;
+	{
+		id = _id;
+	}
 }
 
-double SavingAccount::getInterestRate() const {
-	return interestRate;
+void Account::setBalance(double _balance)
+{
+	if (_balance < 0)
+	{
+		balance = 0;
+	}
+	else
+	{
+		balance = _balance;
+	}
 }
 
-// fix me later
-void SavingAccount::payInterest() {
-	balance = balance + (balance * interestRate);
+void Account::setWithDrawCounter(int _withdrawCounter)
+{
+	withdrawalCounter = _withdrawCounter;
+
 }
 
-void SavingAccount::transfer(double amount, SavingAccount destinationAccount) {
-	// THIS IS NOT FINISHED
+void Account::setDepositCounter(int _depositCounter)
+{
+	depositsCounter = _depositCounter;
+}
+
+void Account::setAccount(Customer* account) {
+	accountCustomer = account;
+}
+
+int Account::getid() const {
+	return id;
+}
+
+double Account::getBalance() const {
+	return balance;
+}
+
+int Account::getWithdrawCounter() const {
+	return withdrawalCounter;
+}
+
+int Account::getDepositCounter() const {
+	return depositsCounter;
+}
+
+Customer* Account::getCustomer() const {
+	return accountCustomer;
+}
+
+void Account::setAll(int _id, double _balance, Customer* _accountCustomer)
+{
+	if (_id < 0)
+	{
+		id = 0;
+	}
+	else
+	{
+		id = _id;
+	}
+	balance = _balance;
+	accountCustomer = _accountCustomer;
+	//No reason to set the counters to 0 because you're not manually setting those to anything
+}
+
+
+void Account::depositMoney(double amount) {
+	if (amount < 0)
+	{
+		balance += 0;
+	}
+	else
+	{
+		balance += amount;
+		depositsCounter++; //Updates the deposit counter
+	}
+}
+
+void Account::withdrawMoney(double amount) {
+	if (amount > 0) {
+		if (amount <= balance)
+		{
+			balance -= amount;
+			withdrawalCounter++; //Updates the withdraw counter
+		}
+		else
+			cout << "Insufficient funds." << endl;
+	}
+	else
+		balance -= 0;
+}
+
+
+void Account::printInfo() {
+	if (accountCustomer != nullptr) {
+		accountCustomer->printInfo();
+
+		cout << "Bank ID: " << id << endl;
+
+		cout << "Current Balance: $";
+		cout << fixed << showpoint << setprecision(2) << balance << endl;
+
+		cout << "Withdraws Made: " << withdrawalCounter << endl;
+		cout << "Deposits Made: " << depositsCounter << endl;
+	}
+
+	else
+		cout << "No customer assigned." << endl;
 }
