@@ -1,6 +1,29 @@
 #include <iostream>
+#include <string>
 #include "Customer.h"
+using namespace std;
 
+// Constructors
+Customer::Customer()
+{
+	fname = "";
+	lname = "";
+	address = "";
+	phone = 0;
+	email = "";
+}
+
+Customer::Customer(string _fname, string _lname, string _address, int _phone, string _email)
+{
+	setFname(_fname);
+	setLname(_lname);
+	setAddress(_address);
+	setPhone(_phone);
+	setEmail(_email);
+}
+
+
+// Setters
 void Customer::setFname(string _fname)
 {
 	fname = _fname;
@@ -20,7 +43,7 @@ void Customer::setPhone(int _phone)
 {
 	if (_phone < 0)
 	{
-		phone = 0; //Might change this later
+		phone = 0;
 	}
 	else
 	{
@@ -33,8 +56,18 @@ void Customer::setEmail(string _email)
 	email = _email;
 }
 
-string Customer::getFname() const
+void Customer::setAll(string _fname, string _lname, string _address, int _phone, string _email)
 {
+	setFname(_fname);
+	setLname(_lname);
+	setAddress(_address);
+	setPhone(_phone);
+	setEmail(_email);
+}
+
+
+// Getters
+string Customer::getFname() const {
 	return fname;
 }
 
@@ -58,34 +91,7 @@ string Customer::getEmail() const
 	return email;
 }
 
-Customer::Customer()
-{
-	fname = "";
-	lname = "";
-	address = "";
-	phone = 0;
-	email = "";
-}
-
-Customer::Customer(string _fname, string _lname, string _address, int _phone, string _email)
-{
-	setFname(_fname);
-	setLname(_lname);
-	setAddress(_address);
-	setPhone(_phone);
-	setEmail(_email);
-}
-
-void Customer::setAll(string _fname, string _lname, string _address, int _phone, string _email)
-{
-	setFname(_fname);
-	setLname(_lname);
-	setAddress(_address);
-	setPhone(_phone);
-	setEmail(_email);
-}
-
-void Customer::PrintInfo()
+void Customer::printInfo()
 {
 	cout << "First name: " << fname << endl;
 	cout << "Last name: " << lname << endl;
@@ -93,4 +99,3 @@ void Customer::PrintInfo()
 	cout << "Phone: " << phone << endl;
 	cout << "Email: " << email << endl;
 }
-
