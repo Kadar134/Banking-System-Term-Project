@@ -8,11 +8,11 @@ class CheckingAccount : public Account {
 	double overDraftLimit;
 
 public:
-	void setOverDraftLimit(double _overDraftLimit);
-	double getOverDraftLimit() const;
-
 	CheckingAccount();
 	CheckingAccount(int _id, double _balance, Customer* _customerAccount, double _overDraftLimit);
+
+	void setOverDraftLimit(double _overDraftLimit);
+	double getOverDraftLimit() const;
 };
 
 #endif // !_CHECKING_ACCOUNT_
