@@ -2,7 +2,7 @@
 #include "SavingAccount.h"
 using namespace std;
 
-// Constructors - At the beginning for faster code
+// Constructors
 SavingAccount::SavingAccount() : Account() {
 	interestRate = 0;
 }
@@ -31,20 +31,14 @@ void SavingAccount::setAll(int _id, double _balance, Customer* _customerAccount,
 		interestRate = 0;
 }
 
-// Getter
 double SavingAccount::getInterestRate() const {
 	return interestRate;
 }
 
-// fix me later
 void SavingAccount::payInterest() {
-	double balance;
-	balance = getBalance();
 	balance = balance + (balance * interestRate);
 }
 
 void SavingAccount::transfer(double amount, SavingAccount destinationAccount) {
-	// put something here later
+	// THIS IS NOT FINISHED
 }
-
-// Note: there are errors and incomplete code. I will work on this later.
