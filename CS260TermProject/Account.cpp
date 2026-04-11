@@ -4,7 +4,6 @@
 #include "Account.h"
 using namespace std;
 
-//Default
 Account::Account() {
 	id = 0;
 	balance = 0;
@@ -13,8 +12,7 @@ Account::Account() {
 	accountCustomer = nullptr;
 }
 
-//Parameterized
-Account::Account(int _id, double _balance, Customer* _customerAccount)
+Account::Account(int _id, double _balance, Customer* _accountCustomer)
 {
 	if (_id < 0)
 	{
@@ -37,11 +35,10 @@ Account::Account(int _id, double _balance, Customer* _customerAccount)
 	//These are set to 0 because they're counters
 	withdrawalCounter = 0;
 	depositsCounter = 0;
-
-	accountCustomer = _customerAccount;
+	accountCustomer = _accountCustomer;
 }
 
-void Account::setid(int _id)
+void Account::setid(int _id) 
 {
 	if (_id < 0)
 	{
@@ -51,6 +48,10 @@ void Account::setid(int _id)
 	{
 		id = _id;
 	}
+}
+
+void Account::setAccount(Customer* _accountCustomer) {
+	accountCustomer = _accountCustomer;
 }
 
 void Account::setBalance(double _balance)
@@ -65,31 +66,16 @@ void Account::setBalance(double _balance)
 	}
 }
 
-void Account::setWithDrawCounter(int _withdrawCounter)
-{
-	withdrawalCounter = _withdrawCounter;
-
-}
-
-void Account::setDepositCounter(int _depositCounter)
-{
-	depositsCounter = _depositCounter;
-}
-
-void Account::setAccount(Customer* account) {
-	accountCustomer = account;
-}
-
 int Account::getid() const {
 	return id;
 }
 
-double Account::getBalance() const {
-	return balance;
-}
-
 int Account::getWithdrawCounter() const {
 	return withdrawalCounter;
+}
+
+double Account::getBalance() const {
+	return balance;
 }
 
 int Account::getDepositCounter() const {
@@ -117,9 +103,9 @@ void Account::setAll(int _id, double _balance, Customer* _accountCustomer)
 
 
 void Account::depositMoney(double amount) {
-	if (amount < 0)
+	if (amount <= 0)
 	{
-		balance += 0;
+		cout << "No money to deposit" << endl;
 	}
 	else
 	{
@@ -129,22 +115,27 @@ void Account::depositMoney(double amount) {
 }
 
 void Account::withdrawMoney(double amount) {
-	if (amount > 0) {
+	if (amount <= 0) 
+	{
+		cout << "No money to withdraw" << endl;
+	}
+	else 
+	{
 		if (amount <= balance)
 		{
 			balance -= amount;
 			withdrawalCounter++; //Updates the withdraw counter
 		}
 		else
+		{
 			cout << "Insufficient funds." << endl;
+		}
 	}
-	else
-		balance -= 0;
 }
 
-
 void Account::printInfo() {
-	if (accountCustomer != nullptr) {
+	if (accountCustomer != nullptr) 
+	{
 		accountCustomer->printInfo();
 
 		cout << "Bank ID: " << id << endl;
