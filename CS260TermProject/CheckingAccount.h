@@ -1,18 +1,22 @@
 #pragma once
-#ifndef _CHECKING_ACCOUNT_
-#define _CHECKING_ACCOUNT_
+#ifndef CHECKINGACCOUNT_H
+#define CHECKINGACCOUNT_H
 #include "Account.h"
 using namespace std;
 
-class CheckingAccount : public Account {
-	double overDraftLimit;
-
+class CheckingAccount: public Account {
+	double overDraftLimit = 100;
 public:
+	//Constructors
 	CheckingAccount();
-	CheckingAccount(int _id, double _balance, Customer* _customerAccount, double _overDraftLimit);
+	CheckingAccount(int _id, double _balance, Customer* _customerInfo, double _overDraftLimit);
 
+	//Setter and getter
 	void setOverDraftLimit(double _overDraftLimit);
 	double getOverDraftLimit() const;
+	void setAll(int _id, double _balance, Customer* _customerInfo, double _overDraftLimit);
+	
+	void withdrawMoney(double amount);
 };
 
-#endif // !_CHECKING_ACCOUNT_
+#endif //! CHECKINGACCOUNT_H
