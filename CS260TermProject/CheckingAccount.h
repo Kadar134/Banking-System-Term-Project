@@ -19,4 +19,4 @@ public:
 	void withdrawMoney(double amount);
 };
 
-#endif //! CHECKINGACCOUNT_H
+#endif //! _CHECKINGACCOUNT_H
