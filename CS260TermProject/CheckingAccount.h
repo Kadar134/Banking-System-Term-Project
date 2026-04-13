@@ -1,6 +1,6 @@
 #pragma once
-#ifndef CHECKINGACCOUNT_H
-#define CHECKINGACCOUNT_H
+#ifndef _CHECKINGACCOUNT_H
+#define _CHECKINGACCOUNT_H
 #include "Account.h"
 using namespace std;
 
