@@ -6,9 +6,6 @@ using namespace std;
 
 int main()
 {
-	
-	//Customer customerList[5];
-
 	int opt;
 	cout << "Main menu\nOption 1\nOption 2\nOption 3\nOption 4\nOption 5\nExit (6)\n";
 	cout << "Enter option (1-6): ";
