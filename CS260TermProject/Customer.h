@@ -2,6 +2,7 @@
 #ifndef _CUSTOMER_
 #define _CUSTOMER_
 #include <string>
+using namespace std;
 
 //Customer class
 class Customer {
