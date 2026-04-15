@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _ACCOUNT_H
-#define _ACCOUNT_H
+#ifndef ACCOUNT_H
+#define ACCOUNT_H
 #include "Customer.h"
 using namespace std;
 
@@ -35,4 +35,4 @@ public:
 	void printInfo();
 };
 
-#endif // !_ACCOUNT_H
+#endif // !ACCOUNT_H
