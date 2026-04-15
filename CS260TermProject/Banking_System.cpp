@@ -15,6 +15,7 @@ void displayMenu() {
 	cout << "Enter an option (1-6): ";
 }
 
+//Checking Account
 void firstOption() {
 	string firstName, lastName, address, phone, email;
 	/*int ID;
@@ -40,7 +41,7 @@ void firstOption() {
 		cin >> email;
 
 		counter++;
-		cout << "Do you wish to add another account? (Y/N): ";
+		cout << "Do you wish to add another checking account? (Y/N): ";
 		cin >> choice;
 
 		if (choice != 'y' || choice != 'Y')
@@ -61,7 +62,37 @@ void firstOption() {
 			customerList[i].setAll(firstName, lastName, address, phone, email);
 		}
 	}
-}
+
+	//Saving Account
+	void secondOption() {
+
+		int ID;
+		double balance, interestRate;
+		bool looping = true;
+		int counter = 0;
+		char choice;
+
+		while (looping) {
+			cout << "Enter ID: ";
+			cin >> ID;
+
+			cout << "Enter interest rate: ";
+			cin >> interestRate;
+		
+		//pointer for customeraccount?
+			counter++;
+			cout << "Do you wish to add another saving account? (Y/N): ";
+			cin >> choice;
+
+			if (choice != 'y' || choice != 'Y')
+				looping = false;
+		}
+		const int SIZE = counter;
+
+		Customer customerList[SIZE];
+
+
+	}
 
 int main()
 {
@@ -87,7 +118,7 @@ int main()
 			break;
 		case 2:
 			system("cls");
-			cout << "Option 2 Chosen\n";
+			secondOption();
 			break;
 		case 3:
 			system("cls");
