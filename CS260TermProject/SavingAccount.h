@@ -11,17 +11,15 @@ public:
 	// Constructors
 	SavingAccount();
 	SavingAccount(int _id, double _balance, Customer* _customerAccount, double _interestRate);
-
-	// Setters and Getters
+	
+	// Setters and Getter
 	void setInterestRate(double _interestRate);
 	void setAll(int _id, double _balance, Customer* _customerAccount, double _interestRate);
 	double getInterestRate() const;
 
-	// Specs
+	// Internal processees
 	void payInterest();
 	void transfer(double amount, SavingAccount destinationAccount);
 };
 
 #endif // !_SAVINGS_ACCOUNT_
-
-// Header file is complete.
