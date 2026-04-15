@@ -17,6 +17,7 @@ void displayMenu() {
 
 int main()
 {
+	const int SIZE = 50;
 	int opt;
 
 	displayMenu();
