@@ -1,52 +1,69 @@
+#include "CheckingAccount.h"
+#include "SavingAccount.h"
 #include <iostream>
-#include "Customer.h"
-#include "Account.h"
-
 using namespace std;
+
+void displayMenu() {
+	cout << "- MAIN MENU -" << endl;
+	cout << "1. Create Checking Account" << endl;
+	cout << "2. Create Saving Account" << endl;
+	cout << "3. View Account Information" << endl;
+	cout << "4. Modify Your Account" << endl;
+	cout << "5. Transfer Money" << endl;
+	cout << "6. Exit" << endl;
+
+	cout << "Enter an option (1-6): ";
+}
 
 int main()
 {
 	int opt;
-	cout << "Main menu\nOption 1\nOption 2\nOption 3\nOption 4\nOption 5\nExit (6)\n";
-	cout << "Enter option (1-6): ";
+
+	displayMenu();
 	cin >> opt;
 
 	while (opt < 1 || opt > 6) //Checks if option is valid
 	{
 		cout << "Invalid option" << endl << endl;
-		cout << "\nMain menu\nOption 1\nOption 2\nOption 3\nOption 4\nOption 5\nExit (6)\n";
-		cout << "Enter option (1-6): ";
+		displayMenu();
 		cin >> opt;
 	}
-	while (opt != 6) 
+
+	while (opt != 6)
 	{
-		switch (opt) 
+		switch (opt)
 		{
-			case 1:
-				cout << "Option 1 Chosen\n";
-				break;
-			case 2: 
-				cout << "Option 2 Chosen\n";
-				break;
-			case 3:
-				cout << "Option 3 Chosen\n";
-				break;
-			case 4:
-				cout << "Option 4 Chosen\n";
-				break;
-			case 5:
-				cout << "Option 5 Chosen\n";
-				break;
-			default: 
-				cout << "Invalid option\n";
-				break;
+		case 1:
+			system("cls");
+			cout << "Option 1 Chosen\n";
+			break;
+		case 2:
+			system("cls");
+			cout << "Option 2 Chosen\n";
+			break;
+		case 3:
+			system("cls");
+			cout << "Option 3 Chosen\n";
+			break;
+		case 4:
+			system("cls");
+			cout << "Option 4 Chosen\n";
+			break;
+		case 5:
+			system("cls");
+			cout << "Option 5 Chosen\n";
+			break;
+		default:
+			system("cls");
+			cout << "Invalid option\n";
+			break;
 		}
 
-		cout << "\nMain menu\nOption 1\nOption 2\nOption 3\nOption 4\nOption 5\nExit (6)\n"; //Makes sure loop isn't infinite
-		cout << "Enter option (1-6): ";
+		displayMenu();
 		cin >> opt;
 	}
 
 	cout << "You've chosen to exit the program. Farewell!";
 	return 0;
 }
+// Note: system("cls") will clear the entire screen. Adrian will implement this
