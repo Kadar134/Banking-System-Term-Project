@@ -1,9 +1,9 @@
-#include <iostream>
 #include "SavingAccount.h"
+#include <iostream>
 using namespace std;
 
 // Constructors
-SavingAccount::SavingAccount(): Account() {
+SavingAccount::SavingAccount() : Account() {
 	interestRate = 0;
 }
 
@@ -39,15 +39,6 @@ void SavingAccount::payInterest() {
 	balance = balance + (balance * interestRate);
 }
 
-void SavingAccount::transfer(double amount, SavingAccount & destinationAccount) {
-	if (balance >= amount)
-	{
-		destinationAccount.balance += amount; //Puts money in new saving account
-	}
-	else
-	{
-		cout << "Not enough money to transfer" << endl;
-	}
-
-
+void SavingAccount::transfer(double amount, SavingAccount destinationAccount) {
+	// THIS IS NOT FINISHED
 }
