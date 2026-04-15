@@ -15,6 +15,54 @@ void displayMenu() {
 	cout << "Enter an option (1-6): ";
 }
 
+void firstOption() {
+	string firstName, lastName, address, phone, email;
+	/*int ID;
+	double balance;*/
+	bool looping = true;
+	int counter = 0;
+	char choice;
+
+	while (looping) {
+		cout << "Enter first name: ";
+		cin >> firstName;
+
+		cout << "Enter last name: ";
+		cin >> lastName;
+
+		cout << "Enter address: ";
+		getline(cin, address); //Address needs spaces
+
+		cout << "Enter phone number: ";
+		cin >> phone;
+
+		cout << "Enter email: ";
+		cin >> email;
+
+		counter++;
+		cout << "Do you wish to add another account? (Y/N): ";
+		cin >> choice;
+
+		if (choice != 'y' || choice != 'Y')
+			looping = false;
+	}
+	const int SIZE = counter;
+
+	Customer customerList[SIZE];
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		if (phone == customerList[i].getPhone())
+		{
+			cout << "This account already exists" << endl;
+		}
+		else
+		{
+			customerList[i].setAll(firstName, lastName, address, phone, email);
+		}
+	}
+}
+
 int main()
 {
 	const int SIZE = 50;
@@ -35,32 +83,7 @@ int main()
 		switch (opt)
 		{
 		case 1:
-			Customer customerList[SIZE];
-			string firstName, lastName, address, phone, email;
-			/*int ID;
-			double balance;*/
-			cout << "Enter first name: ";
-			cin >> firstName;
-			cout << "Enter last name: ";
-			cin >> lastName;
-			cout << "Enter address: ";
-			getline(cin, address); //Address needs spaces
-			cout << "Enter phone number: ";
-			cin >> phone;
-			cout << "Enter email: ";
-			cin >> email;
-			
-			for (int i = 0; i < SIZE; i++)
-			{
-							if (phone == customerList[i].getPhone())
-							{
-								cout << "This account already exists" << endl;
-							}
-							else
-							{
-								customerList[i].setAll(firstName, lastName, address, phone, email);
-							}
-			}
+			firstOption();
 			break;
 		case 2:
 			system("cls");
