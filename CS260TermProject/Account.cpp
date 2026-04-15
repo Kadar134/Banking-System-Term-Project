@@ -38,7 +38,7 @@ Account::Account(int _id, double _balance, Customer* _accountCustomer)
 	accountCustomer = _accountCustomer;
 }
 
-void Account::setid(int _id) 
+void Account::setid(int _id)
 {
 	if (_id < 0)
 	{
@@ -115,11 +115,11 @@ void Account::depositMoney(double amount) {
 }
 
 void Account::withdrawMoney(double amount) {
-	if (amount <= 0) 
+	if (amount <= 0)
 	{
 		cout << "No money to withdraw" << endl;
 	}
-	else 
+	else
 	{
 		if (amount <= balance)
 		{
@@ -134,7 +134,7 @@ void Account::withdrawMoney(double amount) {
 }
 
 void Account::printInfo() {
-	if (accountCustomer != nullptr) 
+	if (accountCustomer != nullptr)
 	{
 		accountCustomer->printInfo();
 
