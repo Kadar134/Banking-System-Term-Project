@@ -84,7 +84,7 @@ void firstOption() {
 			cout << "Do you wish to add another saving account? (Y/N): ";
 			cin >> choice;
 
-			if (choice != 'y' || choice != 'Y')
+			if (choice != 'y' && choice != 'Y')
 				looping = false;
 		}
 		const int SIZE = counter;
