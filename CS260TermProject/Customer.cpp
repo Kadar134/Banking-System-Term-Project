@@ -9,11 +9,11 @@ Customer::Customer()
 	fname = "";
 	lname = "";
 	address = "";
-	phone = 0;
+	phone = "";
 	email = "";
 }
 
-Customer::Customer(string _fname, string _lname, string _address, int _phone, string _email)
+Customer::Customer(string _fname, string _lname, string _address, string _phone, string _email)
 {
 	setFname(_fname);
 	setLname(_lname);
@@ -39,16 +39,9 @@ void Customer::setAddress(string _address)
 	address = _address;
 }
 
-void Customer::setPhone(int _phone)
+void Customer::setPhone(string _phone)
 {
-	if (_phone < 0)
-	{
-		phone = 0;
-	}
-	else
-	{
-		phone = _phone;
-	}
+	phone = _phone;
 }
 
 void Customer::setEmail(string _email)
@@ -56,7 +49,7 @@ void Customer::setEmail(string _email)
 	email = _email;
 }
 
-void Customer::setAll(string _fname, string _lname, string _address, int _phone, string _email)
+void Customer::setAll(string _fname, string _lname, string _address, string _phone, string _email)
 {
 	setFname(_fname);
 	setLname(_lname);
@@ -81,7 +74,7 @@ string Customer::getAddress() const
 	return address;
 }
 
-int Customer::getPhone() const
+string Customer::getPhone() const
 {
 	return phone;
 }
