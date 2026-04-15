@@ -34,8 +34,32 @@ int main()
 		switch (opt)
 		{
 		case 1:
-			system("cls");
-			cout << "Option 1 Chosen\n";
+			Customer customerList[SIZE];
+			string firstName, lastName, address, phone, email;
+			/*int ID;
+			double balance;*/
+			cout << "Enter first name: ";
+			cin >> firstName;
+			cout << "Enter last name: ";
+			cin >> lastName;
+			cout << "Enter address: ";
+			getline(cin, address); //Address needs spaces
+			cout << "Enter phone number: ";
+			cin >> phone;
+			cout << "Enter email: ";
+			cin >> email;
+			
+			for (int i = 0; i < SIZE; i++)
+			{
+							if (phone == customerList[i].getPhone())
+							{
+								cout << "This account already exists" << endl;
+							}
+							else
+							{
+								customerList[i].setAll(firstName, lastName, address, phone, email);
+							}
+			}
 			break;
 		case 2:
 			system("cls");
