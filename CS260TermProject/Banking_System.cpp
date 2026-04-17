@@ -1,7 +1,10 @@
+#include <iostream>
+#include "Customer.h"
 #include "CheckingAccount.h"
 #include "SavingAccount.h"
-#include <iostream>
 using namespace std;
+
+void firstOption();
 
 void displayMenu() {
 	cout << "- MAIN MENU -" << endl;
@@ -15,133 +18,105 @@ void displayMenu() {
 	cout << "Enter an option (1-6): ";
 }
 
-//Checking Account
-void firstOption() {
-	string firstName, lastName, address, phone, email;
-	/*int ID;
-	double balance;*/
-	bool looping = true;
-	int counter = 0;
-	char choice;
-
-	while (looping) {
-		cout << "Enter first name: ";
-		cin >> firstName;
-
-		cout << "Enter last name: ";
-		cin >> lastName;
-
-		cout << "Enter address: ";
-		getline(cin, address); //Address needs spaces
-
-		cout << "Enter phone number: ";
-		cin >> phone;
-
-		cout << "Enter email: ";
-		cin >> email;
-
-		counter++;
-		cout << "Do you wish to add another account? (Y/N): ";
-		cin >> choice;
-
-		if (choice != 'y' && choice != 'Y')
-			looping = false;
-	}
-	const int SIZE = counter;
-
-	Customer customerList[SIZE];
-
-	for (int i = 0; i < SIZE; i++)
-	{
-		if (phone == customerList[i].getPhone())
-		{
-			cout << "This account already exists" << endl;
-		}
-		else
-		{
-			customerList[i].setAll(firstName, lastName, address, phone, email);
-		}
-	}
-}
-
-	//Saving Account
-void secondOption() {
-
-	int ID;
-	double balance, interestRate;
-	bool looping = true;
-	int counter = 0;
-	char choice;
-
-	while (looping) {
-		cout << "Enter ID: ";
-		cin >> ID;
-
-		cout << "Enter interest rate: ";
-		cin >> interestRate;
-		
-	//pointer for customeraccount?
-		counter++;
-		cout << "Do you wish to add another saving account? (Y/N): ";
-		cin >> choice;
-
-		if (choice != 'y' && choice != 'Y')
-			looping = false;
-	}
-	const int SIZE = counter;
-
-	Customer customerList[SIZE];
-}
-
 int main()
 {
-	const int SIZE = 50;
 	int opt;
-
 	displayMenu();
 	cin >> opt;
 
 	while (opt < 1 || opt > 6) //Checks if option is valid
 	{
 		cout << "Invalid option" << endl << endl;
-		displayMenu();
+		cout << "\nMain menu\nOption 1\nOption 2\nOption 3\nOption 4\nOption 5\nExit (6)\n";
+		cout << "Enter option (1-6): ";
 		cin >> opt;
 	}
-
 	while (opt != 6)
 	{
 		switch (opt)
 		{
-		case 1:
+		case 1: //Create a checking account
+		{
 			firstOption();
 			break;
-		case 2:
-			system("cls");
-			secondOption();
-			break;
-		case 3:
-			system("cls");
-			cout << "Option 3 Chosen\n";
-			break;
-		case 4:
-			system("cls");
-			cout << "Option 4 Chosen\n";
-			break;
-		case 5:
-			system("cls");
-			cout << "Option 5 Chosen\n";
-			break;
-		default:
-			system("cls");
-			cout << "Invalid option\n";
-			break;
 		}
-
-		displayMenu();
-		cin >> opt;
+		
+			case 2: //Creating a saving account
+				cout << "Option 2 Chosen\n";
+				break;
+			case 3: // viewing account information
+				cout << "Option 3 Chosen\n";
+				break;
+			case 4: //Modifying/deleting
+				cout << "Option 4 Chosen\n";
+				break;
+			case 5: //Transferring between accounts
+				cout << "Option 5 Chosen\n";
+				break;
+			default:
+				cout << "Invalid option\n";
+				break;
 	}
+
+	cout << "\nMain menu\nOption 1\nOption 2\nOption 3\nOption 4\nOption 5\nExit (6)\n"; //Makes sure loop isn't infinite
+	cout << "Enter option (1-6): ";
+	cin >> opt;
+}
 
 	cout << "You've chosen to exit the program. Farewell!";
 	return 0;
 }
-// Note: system("cls") will clear the entire screen. Adrian will implement this
+
+void firstOption() {
+	const int SIZE = 20;
+	Customer customerList[SIZE];
+	int customerIndex = 0;
+
+	CheckingAccount checkingArr[SIZE];
+	int checkingIndex = 0;
+	
+	/*int ID;
+	double balance;*/
+	string firstName, lastName, address, phone, email;
+	bool checking;
+
+	cout << "Enter first name: ";
+	cin >> firstName;
+
+	cout << "Enter last name: ";
+	cin >> lastName;
+
+	cout << "Enter address: ";
+	cin.ignore();
+	getline(cin, address); //Address needs spaces
+
+	cout << "Enter phone number: ";
+	cin >> phone;
+
+	do
+	{
+		checking = false;
+		for (int i = 0; i < customerIndex; i++)
+		{
+			if (phone == customerList[i].getPhone())
+				{
+					checking = true;
+					cout << "This account already exists. Enter a different phone number: ";
+					cin >> phone;
+					break;
+				}
+			}
+		} while (checking);
+
+    cout << "Enter email: ";
+	cin >> email;
+
+	customerList[customerIndex].setAll(firstName, lastName, address, phone, email);
+	customerIndex++;
+}
+
+void secondOption() {
+	const int SIZE = 20;
+	SavingAccount savingArr[SIZE];
+	int savingIndex = 0;
+}
