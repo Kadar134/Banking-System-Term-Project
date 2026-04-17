@@ -91,8 +91,6 @@ void firstOption() {
 		const int SIZE = counter;
 
 		Customer customerList[SIZE];
-
-
 	}
 
 int main()
