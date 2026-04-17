@@ -92,3 +92,5 @@ void Customer::printInfo()
 	cout << "Phone: " << phone << endl;
 	cout << "Email: " << email << endl;
 }
+
+// Completed
