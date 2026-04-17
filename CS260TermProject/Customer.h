@@ -34,3 +34,5 @@ public:
 };
 
 #endif // !_CUSTOMER_
+
+// completed
