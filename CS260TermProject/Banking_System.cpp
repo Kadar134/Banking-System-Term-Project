@@ -41,10 +41,10 @@ void firstOption() {
 		cin >> email;
 
 		counter++;
-		cout << "Do you wish to add another checking account? (Y/N): ";
+		cout << "Do you wish to add another account? (Y/N): ";
 		cin >> choice;
 
-		if (choice != 'y' || choice != 'Y')
+		if (choice != 'y' && choice != 'Y')
 			looping = false;
 	}
 	const int SIZE = counter;
@@ -62,6 +62,7 @@ void firstOption() {
 			customerList[i].setAll(firstName, lastName, address, phone, email);
 		}
 	}
+}
 
 	//Saving Account
 	void secondOption() {
