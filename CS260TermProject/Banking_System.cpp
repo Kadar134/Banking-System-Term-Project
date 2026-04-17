@@ -65,33 +65,33 @@ void firstOption() {
 }
 
 	//Saving Account
-	void secondOption() {
+void secondOption() {
 
-		int ID;
-		double balance, interestRate;
-		bool looping = true;
-		int counter = 0;
-		char choice;
+	int ID;
+	double balance, interestRate;
+	bool looping = true;
+	int counter = 0;
+	char choice;
 
-		while (looping) {
-			cout << "Enter ID: ";
-			cin >> ID;
+	while (looping) {
+		cout << "Enter ID: ";
+		cin >> ID;
 
-			cout << "Enter interest rate: ";
-			cin >> interestRate;
+		cout << "Enter interest rate: ";
+		cin >> interestRate;
 		
-		//pointer for customeraccount?
-			counter++;
-			cout << "Do you wish to add another saving account? (Y/N): ";
-			cin >> choice;
+	//pointer for customeraccount?
+		counter++;
+		cout << "Do you wish to add another saving account? (Y/N): ";
+		cin >> choice;
 
-			if (choice != 'y' && choice != 'Y')
-				looping = false;
-		}
-		const int SIZE = counter;
-
-		Customer customerList[SIZE];
+		if (choice != 'y' && choice != 'Y')
+			looping = false;
 	}
+	const int SIZE = counter;
+
+	Customer customerList[SIZE];
+}
 
 int main()
 {
