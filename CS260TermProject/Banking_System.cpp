@@ -27,8 +27,7 @@ int main()
 	while (opt < 1 || opt > 6) //Checks if option is valid
 	{
 		cout << "Invalid option" << endl << endl;
-		cout << "\nMain menu\nOption 1\nOption 2\nOption 3\nOption 4\nOption 5\nExit (6)\n";
-		cout << "Enter option (1-6): ";
+		displayMenu();
 		cin >> opt;
 	}
 	while (opt != 6)
@@ -58,8 +57,7 @@ int main()
 				break;
 	}
 
-	cout << "\nMain menu\nOption 1\nOption 2\nOption 3\nOption 4\nOption 5\nExit (6)\n"; //Makes sure loop isn't infinite
-	cout << "Enter option (1-6): ";
+	displayMenu();
 	cin >> opt;
 }
 
