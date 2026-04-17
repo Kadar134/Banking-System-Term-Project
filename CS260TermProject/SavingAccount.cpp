@@ -39,6 +39,12 @@ void SavingAccount::payInterest() {
 	balance = balance + (balance * interestRate);
 }
 
-void SavingAccount::transfer(double amount, SavingAccount destinationAccount) {
-	// THIS IS NOT FINISHED
+void SavingAccount::transfer(double amount, SavingAccount &destinationAccount) {
+	if (balance >= amount && amount > 0) {
+		destinationAccount.balance += amount;
+		balance -= amount;
+	}
+
+	else
+		cout << "Insufficient funds." << endl;
 }
