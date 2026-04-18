@@ -81,9 +81,9 @@ void firstOption() {
 
 	CheckingAccount checkingArr[SIZE];
 	int checkingIndex = 0;
-	
-	/*int ID;
-	double balance;*/
+
+	int ID;
+	double balance, overdraft;
 	string firstName, lastName, address, phone, email;
 	bool checking;
 
@@ -106,20 +106,31 @@ void firstOption() {
 		for (int i = 0; i < customerIndex; i++)
 		{
 			if (phone == customerList[i].getPhone())
-				{
-					checking = true;
-					cout << "This account already exists. Enter a different phone number: ";
-					cin >> phone;
-					break;
-				}
+			{
+				checking = true;
+				cout << "This account already exists. Enter a different phone number: ";
+				cin >> phone;
+				break;
 			}
-		} while (checking);
+		}
+	} while (checking);
 
-    cout << "Enter email: ";
+	cout << "Enter email: ";
 	cin >> email;
 
 	customerList[customerIndex].setAll(firstName, lastName, address, phone, email);
+
+	cout << "Enter balance: ";
+	cin >> balance;
+
+	cout << "Set overdraft limit: ";
+	cin >> overdraft;
+
+	ID = customerIndex + 1;
+	checkingArr[checkingIndex].setAll(ID, balance, &customerList[customerIndex], overdraft);
+
 	customerIndex++;
+	checkingIndex++;
 	cout << endl;
 }
 
