@@ -111,6 +111,7 @@ void firstOption() {
 
 	customerList[customerIndex].setAll(firstName, lastName, address, phone, email);
 	customerIndex++;
+	cout << endl;
 }
 
 void secondOption() {
