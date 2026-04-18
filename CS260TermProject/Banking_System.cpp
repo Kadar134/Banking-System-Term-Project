@@ -4,8 +4,14 @@
 #include "SavingAccount.h"
 using namespace std;
 
+// Prototype zone
 void firstOption();
+void secondOption();
+void thirdOption();
+void fourthOption();
+void fifthOption();
 
+// Menu
 void displayMenu() {
 	cout << "- MAIN MENU -" << endl;
 	cout << "1. Create Checking Account" << endl;
@@ -39,28 +45,31 @@ int main()
 			firstOption();
 			break;
 		}
-		
-			case 2: //Creating a saving account
-				cout << "Option 2 Chosen\n";
-				break;
-			case 3: // viewing account information
-				cout << "Option 3 Chosen\n";
-				break;
-			case 4: //Modifying/deleting
-				cout << "Option 4 Chosen\n";
-				break;
-			case 5: //Transferring between accounts
-				cout << "Option 5 Chosen\n";
-				break;
-			default:
-				cout << "Invalid option\n";
-				break;
+
+		case 2: //Creating a saving account
+			secondOption();
+			break;
+		case 3: // viewing account information
+			thirdOption();
+			break;
+		case 4: //Modifying/deleting
+			fourthOption();
+			break;
+		case 5: //Transferring between accounts
+			fifthOption();
+			break;
+		default:
+			cout << "Invalid option\n";
+			break;
+		}
+
+		displayMenu();
+		cin >> opt;
 	}
 
-	displayMenu();
-	cin >> opt;
+	cout << "You've chosen to exit the program. Farewell!";
+	return 0;
 }
-
 	cout << "You've chosen to exit the program. Farewell!";
 	return 0;
 }
@@ -118,4 +127,17 @@ void secondOption() {
 	const int SIZE = 20;
 	SavingAccount savingArr[SIZE];
 	int savingIndex = 0;
+}
+
+void thirdOption() { // Fix
+	cout << "ACCOUNT INFORMATION" << endl;
+
+}
+
+void fourthOption() {
+
+}
+
+void fifthOption() {
+
 }
