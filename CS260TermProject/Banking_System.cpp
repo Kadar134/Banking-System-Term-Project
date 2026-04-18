@@ -27,10 +27,13 @@ void displayMenu() {
 int main()
 {
 	const int SIZE = 20;
+	
 	Customer customerList[SIZE];
 	int customerIndex = 0;
+	
 	CheckingAccount checkingArr[SIZE];
 	int checkingIndex = 0;
+	
 	SavingAccount savingArr[SIZE];
 	int savingIndex = 0;
 
