@@ -66,12 +66,15 @@ int main()
 		case 3: // viewing account information
 			thirdOption();
 			break;
+			
 		case 4: //Modifying/deleting
 			fourthOption();
 			break;
+			
 		case 5: //Transferring between accounts
 			fifthOption();
 			break;
+			
 		default:
 			cout << "Invalid option\n";
 			break;
