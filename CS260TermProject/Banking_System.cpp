@@ -70,9 +70,6 @@ int main()
 	cout << "You've chosen to exit the program. Farewell!";
 	return 0;
 }
-	cout << "You've chosen to exit the program. Farewell!";
-	return 0;
-}
 
 void firstOption() {
 	const int SIZE = 20;
