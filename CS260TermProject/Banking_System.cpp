@@ -139,11 +139,7 @@ void firstOption(const int SIZE, Customer customerList[], int customerIndex, Che
 }
 
 void secondOption(const int SIZE, Customer customerList[], int customerIndex, SavingAccount savingArr[], int savingIndex)
-{ // Temp code, fix momentarily. IMMMM fixing it momentarily. Dont touch my child code.
-	
-	// temporary values for debugging - CHANGE WHEN GLOBAL...ER
-	customerList[customerIndex].setAll("Reza", "Sarraf", "2800 University Blvd. N.", "34983535", "rsarraf@jacksonville.edu");
-
+{
 	double balance, interestRate;
 	int ID;
 
@@ -164,12 +160,18 @@ void secondOption(const int SIZE, Customer customerList[], int customerIndex, Sa
 void thirdOption() { // Fix
 	cout << "ACCOUNT INFORMATION" << endl;
 
+
+	cout << endl;
 }
 
 void fourthOption() {
 
+
+	cout << endl;
 }
 
-void fifthOption() { // Adrian is doing this don't touch it's my redemption arc 
+void fifthOption() { // Adrian is doing this don't touch it's my redemption arc
 
+
+	cout << endl;
 }
