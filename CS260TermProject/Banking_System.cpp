@@ -131,10 +131,32 @@ void firstOption() {
 	cout << endl;
 }
 
-void secondOption() {
+void secondOption() { // Temp code, fix momentarily. IMMMM fixing it momentarily. Dont touch my child code.
 	const int SIZE = 20;
 	SavingAccount savingArr[SIZE];
 	int savingIndex = 0;
+
+	Customer customerList[SIZE];
+	int customerIndex = 0;
+
+	// temporary values for debugging - CHANGE WHEN GLOBAL...ER
+	customerList[customerIndex].setAll("Reza", "Sarraf", "2800 University Blvd. N.", "34983535", "rsarraf@jacksonville.edu");
+
+	double balance, interestRate;
+	int ID;
+
+	cout << "Enter balance: ";
+	cin >> balance;
+
+	cout << "What is the interest rate?: ";
+	cin >> interestRate;
+
+	ID = savingIndex + 1;
+
+	savingArr[savingIndex].setAll(ID, balance, &customerList[customerIndex], interestRate);
+	savingIndex++;
+	customerIndex++;
+	cout << endl;
 }
 
 void thirdOption() { // Fix
@@ -146,6 +168,6 @@ void fourthOption() {
 
 }
 
-void fifthOption() {
+void fifthOption() { // Adrian is doing this don't touch it's my redemption arc 
 
 }
