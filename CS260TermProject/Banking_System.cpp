@@ -5,8 +5,8 @@
 using namespace std;
 
 // Prototype zone
-void firstOption();
-void secondOption();
+void firstOption(const int SIZE, Customer customerList[], int customerIndex, CheckingAccount checkingArr[], int checkingIndex);
+void secondOption(const int SIZE, Customer customerList[], int customerIndex, SavingAccount savingArr[], int savingIndex);
 void thirdOption();
 void fourthOption();
 void fifthOption();
@@ -26,6 +26,14 @@ void displayMenu() {
 
 int main()
 {
+	const int SIZE = 20;
+	Customer customerList[SIZE];
+	int customerIndex = 0;
+	CheckingAccount checkingArr[SIZE];
+	int checkingIndex = 0;
+	SavingAccount savingArr[SIZE];
+	int savingIndex = 0;
+
 	int opt;
 	displayMenu();
 	cin >> opt;
@@ -42,13 +50,16 @@ int main()
 		{
 		case 1: //Create a checking account
 		{
-			firstOption();
+			firstOption(SIZE, customerList, customerIndex, checkingArr, checkingIndex);
 			break;
 		}
 
-		case 2: //Creating a saving account
-			secondOption();
+		case 2:
+		{
+			//Creating a saving account
+			secondOption(SIZE, customerList, customerIndex, savingArr, savingIndex);
 			break;
+		}
 		case 3: // viewing account information
 			thirdOption();
 			break;
@@ -71,14 +82,7 @@ int main()
 	return 0;
 }
 
-void firstOption() {
-	const int SIZE = 20;
-	Customer customerList[SIZE];
-	int customerIndex = 0;
-
-	CheckingAccount checkingArr[SIZE];
-	int checkingIndex = 0;
-
+void firstOption(const int SIZE, Customer customerList[], int customerIndex, CheckingAccount checkingArr[], int checkingIndex) {
 	int ID;
 	double balance, overdraft;
 	string firstName, lastName, address, phone, email;
@@ -131,14 +135,9 @@ void firstOption() {
 	cout << endl;
 }
 
-void secondOption() { // Temp code, fix momentarily. IMMMM fixing it momentarily. Dont touch my child code.
-	const int SIZE = 20;
-	SavingAccount savingArr[SIZE];
-	int savingIndex = 0;
-
-	Customer customerList[SIZE];
-	int customerIndex = 0;
-
+void secondOption(const int SIZE, Customer customerList[], int customerIndex, SavingAccount savingArr[], int savingIndex)
+{ // Temp code, fix momentarily. IMMMM fixing it momentarily. Dont touch my child code.
+	
 	// temporary values for debugging - CHANGE WHEN GLOBAL...ER
 	customerList[customerIndex].setAll("Reza", "Sarraf", "2800 University Blvd. N.", "34983535", "rsarraf@jacksonville.edu");
 
