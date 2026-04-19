@@ -78,12 +78,20 @@ int main()
 			thirdOption(SIZE, customerList, customerIndex, checkingArr, checkingIndex);
 			break;
 
-		case 4: //Modifying/deleting
+		case 4: // Modifying/deleting
 			fourthOption();
 			break;
-
-		case 5: //Transferring between accounts
+		
+		case 5: // Transferring between accounts (internal)
 			fifthOption();
+			break;
+		
+		case 6: // Withdraw Money
+			sixthOption();
+			break;
+		
+		case 7: // Deposit Money
+			seventhOption();
 			break;
 
 		default:
@@ -187,14 +195,78 @@ void thirdOption(const int SIZE, Customer customerList[], int customerIndex, Che
 	cout << endl;
 }
 
-void fourthOption() { //Modifying/deleting
+void fourthOption() { // modify/delete
+	int choice;
+	cout << "OPTIONS" << endl;
+	cout << "1. Modify an account" << endl;
+	cout << "1. Delete an account" << endl;
+	cout << "3. Go back" << endl;
+	cout << "Select a menu option: ";
+	cin >> choice;
+
+	if (choice == 1) {
+		int acc_choice;
+
+		cout << "What would you like to modify?: " << endl;
+		cout << "1. Customer" << endl;
+		cout << "2. Checking Accounts" << endl;
+		cout << "Select a menu option: ";
+		cin >> acc_choice;
+
+		if (acc_choice == 1) {
+			cout << "CUSTOMER DETAILS" << endl;
+			// display current customer details
+
+			cout << "What would you like to modify?: " << endl;
+			cout << "1. Customer Name" << endl;
+			cout << "2. Home Address" << endl;
+			cout << "3. Phone Number" << endl;
+			cout << "4. Customer Name" << endl;
+			cout << "5. Customer Name" << endl;
+			cout << "6. Customer Name" << endl;
+			cout << "7. Customer Name" << endl;
+		}
+	}
+
+	else if (choice == 2) {
+
+	}
+
+	else if (choice == 3) {
+
+	}
+
+	else
+		cout << "Invalid option." << endl;
+
+	cout << endl;
+}
+
+void fifthOption() { // transfer from one account to another
+
 
 
 	cout << endl;
 }
 
-void fifthOption() { // Adrian is doing this don't touch it's my redemption arc, transferring between accounts
+void sixthOption() { // withdraw 
 
+
+	cout << endl;
+}
+
+void depositToChecking(CheckingAccount destinationAccount, double amount) { 
+	if (amount > 0)
+		destinationAccount.depositMoney(amount);
+
+	else
+		cout << "INVALID AMOUNT ENTERED; VOIDING DEPOSIT..." << endl;
+
+	cout << endl;
+}
+
+void depositToSavings(SavingAccount destinationAccount, double amount) {
+	// no addition yet.
 
 	cout << endl;
 }
