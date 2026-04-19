@@ -13,21 +13,22 @@ void fifthOption();
 
 // Menu
 int displayMenu() { //Is value returning so we can return opt
-	int opt = 0;
 	cout << "- MAIN MENU -" << endl;
 	cout << "1. Create Checking Account" << endl;
 	cout << "2. Create Saving Account" << endl;
 	cout << "3. View Account Information" << endl;
 	cout << "4. Modify Your Account" << endl;
-	cout << "5. Transfer Money" << endl;
-	cout << "6. Exit" << endl;
+	cout << "5. Internal Transfer" << endl;
+	cout << "6. Withdraw Money" << endl;
+	cout << "7. Deposit Money" << endl;
+	cout << "8. Exit" << endl;
 
-	cout << "Enter an option (1-6): ";
+	cout << "Enter an option (1-8): ";
 	cin >> opt;
-	while (opt < 1 || opt > 6)
+	while (opt < 1 || opt > 8)
 	{
 		//The menu is reprinted only if the user types the wrong value
-		cout << "Invalid! Please enter an option between 1-6: ";
+		cout << "Invalid! Please enter an option between 1-8: ";
 		if (cin.fail())
 		{
 			cin.clear();
