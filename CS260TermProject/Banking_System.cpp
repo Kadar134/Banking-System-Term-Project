@@ -154,7 +154,6 @@ void firstOption(const int SIZE, Customer customerList[], int customerIndex, Che
 
 		customerIndex++;
 		checkingIndex++;
-		//cout << customerIndex << endl; //testing
 		cout << endl;
 	}
 }
