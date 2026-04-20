@@ -1,7 +1,8 @@
-#include <iostream>
-#include "Customer.h"
 #include "CheckingAccount.h"
 #include "SavingAccount.h"
+#include "Customer.h"
+#include <iostream>
+#include <iomanip>
 using namespace std;
 
 // Prototype zone
