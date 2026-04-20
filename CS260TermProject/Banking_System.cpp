@@ -249,7 +249,7 @@ void secondOption(const int SIZE, Customer customerList[], int& customerIndex, S
 	cout << "Enter interest rate: ";
 	cin >> interestRate;
 
-	while (cin.fail()) //Validates if overdraft uses letters
+	while (cin.fail()) //Validates if interest rate uses letters
 	{
 		cin.clear();
 		cin.ignore(1000, '\n');
