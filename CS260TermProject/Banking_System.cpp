@@ -11,8 +11,8 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 void createSaving(const int SIZE, Customer customerList[], int& customerIndex, SavingAccount savingArr[], int& savingIndex);
 void viewAccountInfo(const int SIZE, Customer customerList[], int customerIndex, CheckingAccount checkingArr[], int checkingIndex, SavingAccount savingArr[], int savingIndex);
 void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex);
-void transferAccount(double amount, const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex);
-void withdraw(double amount, const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex);
+void transferAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex);
+void withdraw(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex);
 
 // Menu
 int displayMenu() { //Is value returning so we can return opt
@@ -55,6 +55,8 @@ int main()
 
 	SavingAccount savingArr[SIZE];
 	int savingIndex = 0;
+	
+	// prompt to add a user
 
 	int opt = displayMenu(); //Saves the option the user chose
 
@@ -88,13 +90,17 @@ int main()
 			break;
 
 		case 5: // Transferring  accounts (internal)
-			double amount; // adjust later
-			transferAccount(amount, SIZE, customerList, customerIndex, checkingArr, checkingIndex, savingArr, savingIndex);
+			transferAccount(SIZE, customerList, customerIndex, checkingArr, checkingIndex, savingArr, savingIndex);
 			break;
 
 		case 6: // Withdraw Money
-			double amount; // adjust later
-			withdraw(amount, SIZE, customerList, customerIndex, checkingArr, checkingIndex);
+			double withdrawAmount;
+			cout << "Enter an amount to withdraw: ";
+			cin >> withdrawAmount;
+			if (withdrawAmount > 0)
+				withdraw(SIZE, customerList, customerIndex, checkingArr, checkingIndex);
+			else
+				cout << "Invalid input." << endl;
 			break;
 
 		case 7: // Deposit Money
@@ -551,7 +557,15 @@ void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, 
 }
 
 void transferAccount(double amount, const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex) { // transfer from one account to another
-	// display the accounts beforehand
+	double transferAddAmount;
+
+	cout << "Enter an amount to transfer: ";
+	cin >> transferAddAmount;
+
+	if (transferAddAmount > 0) {
+
+	}
+
 
 	cout << endl;
 }
