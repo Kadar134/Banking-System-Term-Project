@@ -556,21 +556,21 @@ void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, 
 	cout << endl;
 }
 
-void transferAccount(double amount, const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex) { // transfer from one account to another
+void transferAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex) { // transfer from one account to another
 	double transferAddAmount;
 
 	cout << "Enter an amount to transfer: ";
 	cin >> transferAddAmount;
 
 	if (transferAddAmount > 0) {
-
+		// savingArr[savingIndex].transfer(transferAddAmount, checkingArr[checkingIndex].balance);
 	}
 
 
 	cout << endl;
 }
 
-void withdraw(double amount, const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex) { // withdraw 
+void withdraw(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex) { // withdraw 
 	// display accounts
 
 
