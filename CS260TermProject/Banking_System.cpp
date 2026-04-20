@@ -353,7 +353,7 @@ void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, 
 						customerList[customerIndex].printInfo();
 						cout << endl;
 
-						cout << "MODIFY - CUSTOMER" << endl;
+						cout << "MODIFY CUSTOMER" << endl;
 						cout << "1. Customer Name" << endl;
 						cout << "2. Home Address" << endl;
 						cout << "3. Phone Number" << endl;
