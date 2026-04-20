@@ -331,7 +331,7 @@ void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, 
 			if (choice == 1) { // MODIFICATION
 				int accountChoice;
 
-				cout << "MODIFICATION" << endl;
+				cout << "MODIFY ACCOUNT" << endl;
 				cout << "1. Customer" << endl;
 				cout << "2. Checking Accounts" << endl;
 				cout << "3. Saving Accounts" << endl;
@@ -482,7 +482,7 @@ void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, 
 						cout << "Enter a valid value." << endl;
 					}
 
-					cout << "MODIFICATION - GENERAL" << endl;
+					cout << "MODIFY ACCOUNT" << endl;
 					cout << "1. Customer" << endl;
 					cout << "2. Checking Accounts" << endl;
 					cout << "3. Saving Accounts" << endl;
