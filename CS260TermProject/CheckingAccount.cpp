@@ -59,14 +59,14 @@ void CheckingAccount::withdrawMoney(double amount)
 	{
 		if (balance >= amount) //If what you have in the bank is more than or equal to the amount
 		{
-			balance = balance - amount; //Updates balance
+			balance -= amount; //Updates balance
 			withdrawalCounter++;
 		}
 		else
 		{
 			if (balance <= overDraftLimit) //If what you have in the bank is below 0 but you're using overdraft
 			{
-				balance = balance - overDraftLimit;
+				balance -= overDraftLimit;
 				if (overDraftLimit < 0)
 				{
 					cout << "Overdraft limit has run out" << endl;
