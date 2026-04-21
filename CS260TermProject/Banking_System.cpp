@@ -599,6 +599,12 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 
 		cout << "Enter ID of the saving account you want to transfer from: ";
 		cin >> id;
+		
+			while (cin.fail()) //Validates if overdraft uses letters	{
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Need to use numbers. Enter ID: ";
+			cin >> id;
 
 		for (int i = 0; i < savingIndex; i++)
 		{
@@ -650,8 +656,8 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 
 		cout << endl;
 	}
+  }
 }
-
 void withdraw(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex) { // withdraw 
 	// display accounts
 
