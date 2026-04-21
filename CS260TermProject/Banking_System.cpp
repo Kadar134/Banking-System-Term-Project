@@ -90,7 +90,7 @@ int main()
 			break;
 
 		case 5: // Transferring  accounts (internal)
-			transferAccount(SIZE, customerList, customerIndex, savingArr, savingIndex);
+			transferSavingAccount(SIZE, customerList, customerIndex, savingArr, savingIndex);
 			break;
 
 		case 6: // Withdraw Money
