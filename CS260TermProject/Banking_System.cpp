@@ -22,7 +22,7 @@ int displayMenu() { //Is value returning so we can return opt
 	cout << "2. Create Saving Account" << endl;
 	cout << "3. View Account Information" << endl;
 	cout << "4. Modify Your Account" << endl;
-	cout << "5. Internal Transfer" << endl;
+	cout << "5. Internal Transfer Between Savings Accounts" << endl;
 	cout << "6. Withdraw Money" << endl;
 	cout << "7. Deposit Money" << endl;
 	cout << "8. Exit" << endl;
@@ -582,12 +582,12 @@ void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, 
 	cout << endl;
 }
 
-void transferSavingAccount(const int SIZE, Customer customerList[], int& customerIndex, SavingAccount savingArr[], int& savingIndex) 
+void transferSavingAccount(const int SIZE, Customer customerList[], int& customerIndex, SavingAccount savingArr[], int& savingIndex)
 { // transfer from one saving account to another 
-	
-	if (customerIndex < 1) 
+
+	if (customerIndex < 1)
 	{
-		cout << "No account has been made." << endl;
+		cout << "No account has been made." << endl << endl;
 	}
 	else
 	{
@@ -599,12 +599,14 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 
 		cout << "Enter ID of the saving account you want to transfer from: ";
 		cin >> id;
-		
-			while (cin.fail()) //Validates if overdraft uses letters	{
+
+		while (cin.fail()) //Validates if ID uses letters	
+		{
 			cin.clear();
 			cin.ignore(1000, '\n');
 			cout << "Need to use numbers. Enter ID: ";
 			cin >> id;
+		}
 
 		for (int i = 0; i < savingIndex; i++)
 		{
@@ -620,6 +622,13 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 		{
 			cout << "Enter ID of the saving account you want to transfer to: ";
 			cin >> id;
+			while (cin.fail()) //Validates if ID uses letters	
+			{
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Need to use numbers. Enter ID: ";
+				cin >> id;
+			}
 
 			for (int i = 0; i < savingIndex; i++)
 			{
@@ -635,6 +644,13 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 			{
 				cout << "Enter an amount to transfer to saving account: ";
 				cin >> transferAmount;
+				while (cin.fail()) //Validates if transferAmount uses letters	
+				{
+					cin.clear();
+					cin.ignore(1000, '\n');
+					cout << "Need to use numbers. Enter an amount: ";
+					cin >> id;
+				}
 				if (transferAmount <= 0)
 				{
 					cout << "Not enough money to transfer. Try again!" << endl;
@@ -656,8 +672,8 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 
 		cout << endl;
 	}
-  }
 }
+
 void withdraw(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex) { // withdraw 
 	// display accounts
 
