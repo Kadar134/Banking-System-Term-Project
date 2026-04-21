@@ -2,7 +2,7 @@
 Team: Kadar Rahming, Leila Morales, Adrianna Collige (CS-260 SPR26)
 
 // HEADER FILES
-Account.h - Adrianna/Kadar
+Account.h - All
 CheckingAccount.h - Kadar
 Customer.h - All
 SavingAccount.h - Adrianna
@@ -19,19 +19,18 @@ Source.cpp - All
 // SOURCE.CPP & FUNCTIONS
 Prototypes - Kadar/Adrianna
 main() - Kadar (switch case); Leila/Adrianna (etc)
-createChecking() - 
-createSaving() - 
+createChecking() - Kadar/Leila
+createSaving() - All
 viewAccountInfo() - Kadar
-modifyAccount() - Adrianna 
-transferSavingAccount() - 
+modifyAccount() - Adrianna
+transferSavingAccount() - Leila/Kadar
 withdraw() - Adrianna
-depositToChecking - Adrianna
-depositToSavings() - Adrianna
+deposit() - Adrianna
 
 
 // GENERAL
-Debugging/Error Correction - 
+Debugging/Error Correction - All
 Formatting - Adrianna
 Contribution File - All
-Submission/Zip File - 
+Submission/Zip File - Adrianna
 Beta Testing - All
