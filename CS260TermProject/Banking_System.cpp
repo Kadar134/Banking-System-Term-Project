@@ -11,7 +11,7 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 void createSaving(const int SIZE, Customer customerList[], int& customerIndex, SavingAccount savingArr[], int& savingIndex);
 void viewAccountInfo(const int SIZE, Customer customerList[], int customerIndex, CheckingAccount checkingArr[], int checkingIndex, SavingAccount savingArr[], int savingIndex);
 void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex);
-void transferAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex);
+void transferSavingAccount(const int SIZE, Customer customerList[], int& customerIndex, SavingAccount savingArr[], int& savingIndex);
 void withdraw(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex);
 
 // Menu
@@ -90,7 +90,7 @@ int main()
 			break;
 
 		case 5: // Transferring  accounts (internal)
-			transferAccount(SIZE, customerList, customerIndex, checkingArr, checkingIndex, savingArr, savingIndex);
+			transferAccount(SIZE, customerList, customerIndex, savingArr, savingIndex);
 			break;
 
 		case 6: // Withdraw Money
@@ -168,7 +168,10 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 		cin >> email;
 
 		customerList[customerIndex].setAll(firstName, lastName, address, phone, email);
-
+		
+		ID = customerIndex + 1;
+		cout << "ID is " << ID << endl;
+		
 		cout << "Enter balance: ";
 		cin >> balance;
 		while (cin.fail()) //Validates if balance uses letters
@@ -190,7 +193,6 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 			cin >> overdraft;
 		}
 
-		ID = customerIndex + 1;
 		checkingArr[checkingIndex].setAll(ID, balance, &customerList[customerIndex], overdraft);
 
 		customerIndex++;
@@ -245,6 +247,9 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 
 	customerList[customerIndex].setAll(firstName, lastName, address, phone, email);
 
+	ID = customerIndex + 1;
+	cout << "ID is " << ID << endl;
+
 	cout << "Enter balance: ";
 	cin >> balance;
 	while (cin.fail()) //Validates if balance uses letters
@@ -265,8 +270,7 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 		cout << "Need to use numbers. Enter interest rate: ";
 		cin >> interestRate;
 	}
-
-	ID = customerIndex + 1;
+	
 	savingArr[savingIndex].setAll(ID, balance, &customerList[customerIndex], interestRate);
 
 	customerIndex++;
@@ -305,8 +309,8 @@ void viewAccountInfo(const int SIZE, Customer customerList[], int customerIndex,
 			{
 				cout << endl << "Viewing Account " << i + 1 << endl;
 				customerList[i].printInfo();
-				cout << "ID: " << checkingArr[i].getid() << endl;
-				cout << "Balance: " << checkingArr[i].getBalance() << endl;
+				cout << "ID: " << savingArr[i].getid() << endl;
+				cout << "Balance: " << savingArr[i].getBalance() << endl;
 				cout << "Interest rate: " << savingArr[i].getInterestRate() << endl;
 				cout << "------------------------------------------" << endl << endl;
 			}
@@ -578,18 +582,74 @@ void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, 
 	cout << endl;
 }
 
-void transferAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex) { // transfer from one account to another
-	double transferAddAmount;
-
-	cout << "Enter an amount to transfer: ";
-	cin >> transferAddAmount;
-
-	if (transferAddAmount > 0) {
-		// savingArr[savingIndex].transfer(transferAddAmount, checkingArr[checkingIndex].balance);
+void transferSavingAccount(const int SIZE, Customer customerList[], int& customerIndex, SavingAccount savingArr[], int& savingIndex) 
+{ // transfer from one saving account to another 
+	
+	if (customerIndex < 1) 
+	{
+		cout << "No account has been made." << endl;
 	}
+	else
+	{
+		double transferAmount;
+		char accountOpt; //Chooses the account you want to transfer to
+		int id;
+		bool foundIDfrom = false, foundIDTo = false;
+		int transferFromIndex = -1, transferToIndex = -1; //Need these to validate if IDs exist
 
+		cout << "Enter ID of the saving account you want to transfer from: ";
+		cin >> id;
 
-	cout << endl;
+		for (int i = 0; i < savingIndex; i++)
+		{
+			if (id == savingArr[i].getid()) //Makes sure ID exists in the system
+			{
+				foundIDfrom = true;
+				transferFromIndex = i; //Saves position of transfer from account
+				break;
+			}
+		}
+
+		if (foundIDfrom == true)
+		{
+			cout << "Enter ID of the saving account you want to transfer to: ";
+			cin >> id;
+
+			for (int i = 0; i < savingIndex; i++)
+			{
+				if (id == savingArr[i].getid()) //Makes sure ID exists in the system
+				{
+					foundIDTo = true;
+					transferToIndex = i; //Saves position of transfer from account
+					break;
+				}
+			}
+
+			if (foundIDTo == true)
+			{
+				cout << "Enter an amount to transfer to saving account: ";
+				cin >> transferAmount;
+				if (transferAmount <= 0)
+				{
+					cout << "Not enough money to transfer. Try again!" << endl;
+				}
+				else
+				{
+					savingArr[transferFromIndex].transfer(transferAmount, savingArr[transferToIndex]); //Moves money from first account and into the second
+				}
+			}
+			else
+			{
+				cout << "ID does not exist" << endl; //Shows up if second account doesn't exist
+			}
+		}
+		else
+		{
+			cout << "ID does not exist" << endl; //Shows up if first account doesn't exist
+		}
+
+		cout << endl;
+	}
 }
 
 void withdraw(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex) { // withdraw 
