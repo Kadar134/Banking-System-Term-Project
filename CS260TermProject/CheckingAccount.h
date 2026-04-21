@@ -5,7 +5,7 @@
 using namespace std;
 
 class CheckingAccount : public Account {
-	double overDraftLimit = 100;
+	double overDraftLimit;
 public:
 	//Constructors
 	CheckingAccount();
