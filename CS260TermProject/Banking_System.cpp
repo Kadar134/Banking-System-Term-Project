@@ -12,7 +12,7 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 void createSaving(const int SIZE, Customer customerList[], int& customerIndex, SavingAccount savingArr[], int& savingIndex);
 void viewAccountInfo(const int SIZE, Customer customerList[], int customerIndex, CheckingAccount checkingArr[], int checkingIndex, SavingAccount savingArr[], int savingIndex);
 void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex);
-void transferSavingAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex);
+void transferSavingAccount(const int SIZE, Customer customerList[], int& customerIndex, SavingAccount savingArr[], int& savingIndex);
 void withdraw(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex);
 
 // Monetary-Based Prototypes
@@ -99,7 +99,7 @@ int main()
 			break;
 
 		case 5: // Transferring  accounts (internal)
-			transferSavingAccount(SIZE, customerList, customerIndex, checkingArr, checkingIndex, savingArr, savingIndex);
+			transferSavingAccount(SIZE, customerList, customerIndex, savingArr, savingIndex);
 			break;
 
 		case 6: // Withdraw Money
