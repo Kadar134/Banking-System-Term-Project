@@ -10,7 +10,7 @@ SavingAccount.h - Adrianna
 
 // CPP FILES
 Account.cpp - 
-CheckingAccount.cpp - Adrianna
+CheckingAccount.cpp - Adrianna/Kadar
 Customer.cpp - 
 SavingAccount.cpp - Adrianna
 Source.cpp - All
