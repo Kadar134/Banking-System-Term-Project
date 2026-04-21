@@ -149,7 +149,7 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 		cin.ignore(1000, '\n');
 		getline(cin, address); //Address needs spaces
 
-		cout << "Enter number: ";
+		cout << "Enter phone number: ";
 		cin >> phone;
 
 		while (phone.length() != 10) //Makes sure the phone numbers use 10 digits
@@ -178,6 +178,9 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 
 		customerList[customerIndex].setAll(firstName, lastName, address, phone, email);
 
+		ID = customerIndex + 1;
+		cout << "ID is " << ID << endl;
+
 		cout << "Enter balance: ";
 		cin >> balance;
 		while (cin.fail()) //Validates if balance uses letters
@@ -199,7 +202,6 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 			cin >> overdraft;
 		}
 
-		ID = customerIndex + 1;
 		checkingArr[checkingIndex].setAll(ID, balance, &customerList[customerIndex], overdraft);
 
 		customerIndex++;
@@ -254,6 +256,9 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 
 	customerList[customerIndex].setAll(firstName, lastName, address, phone, email);
 
+	ID = customerIndex + 1;
+	cout << "ID is " << ID << endl;
+
 	cout << "Enter balance: ";
 	cin >> balance;
 	while (cin.fail()) //Validates if balance uses letters
@@ -275,7 +280,6 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 		cin >> interestRate;
 	}
 
-	ID = customerIndex + 1;
 	savingArr[savingIndex].setAll(ID, balance, &customerList[customerIndex], interestRate);
 
 	customerIndex++;
@@ -283,10 +287,10 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 	cout << endl;
 }
 
-void viewAccountInfo(const int SIZE, Customer customerList[], int customerIndex, CheckingAccount checkingArr[], int checkingIndex, SavingAccount savingArr[],
+void viewAccount(const int SIZE, Customer customerList[], int customerIndex, CheckingAccount checkingArr[], int checkingIndex, SavingAccount savingArr[],
 	int savingIndex) { //Views account information
 
-	if (checkingIndex < 1) //Makes it so the user can't view accounts that haven't been added yet
+	if (customerIndex < 1) //Makes it so the user can't view accounts that haven't been added yet
 	{
 		cout << "No accounts have been made. Please try again." << endl << endl;
 	}
@@ -312,11 +316,10 @@ void viewAccountInfo(const int SIZE, Customer customerList[], int customerIndex,
 		{
 			for (int i = 0; i < savingIndex; i++)
 			{
-				cout << "------------------------------------------" << endl;
 				cout << endl << "Viewing Account " << i + 1 << endl;
 				customerList[i].printInfo();
-				cout << "ID: " << checkingArr[i].getid() << endl;
-				cout << "Balance: " << checkingArr[i].getBalance() << endl;
+				cout << "ID: " << savingArr[i].getid() << endl;
+				cout << "Balance: " << savingArr[i].getBalance() << endl;
 				cout << "Interest rate: " << savingArr[i].getInterestRate() << endl;
 				cout << "------------------------------------------" << endl << endl;
 			}
