@@ -4,7 +4,7 @@
 #include "Account.h"
 using namespace std;
 
-class SavingAccount : Account {
+class SavingAccount : public Account {
 	double interestRate;
 
 public:
