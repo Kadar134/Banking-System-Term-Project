@@ -20,15 +20,16 @@ void deposit(CheckingAccount checkingArr[], int checkingIndex, SavingAccount sav
 // Menu
 int displayMenu() { //Is value returning so we can return opt
 	int opt = 0;
-	cout << "- MAIN MENU -" << endl;
-	cout << "1. Create Checking Account" << endl;
-	cout << "2. Create Saving Account" << endl;
-	cout << "3. View Account Information" << endl;
-	cout << "4. Modify Your Account" << endl;
-	cout << "5. Internal Transfer" << endl;
-	cout << "6. Withdraw Money" << endl;
-	cout << "7. Deposit Money" << endl;
-	cout << "8. Exit" << endl;
+	cout << "||============== MAIN MENU ==============||" << endl;
+	cout << "||      1. Create Checking Account       ||" << endl;
+	cout << "||      2. Create Saving Account         ||" << endl;
+	cout << "||      3. View Account Information      ||" << endl;
+	cout << "||      4. Modify Your Account           ||" << endl;
+	cout << "||      5. Internal Transfer             ||" << endl;
+	cout << "||      6. Withdraw Money                ||" << endl;
+	cout << "||      7. Deposit Money                 ||" << endl;
+	cout << "||      8. Exit                          ||" << endl;
+	cout << "||=======================================||" << endl;
 
 	cout << "Enter an option (1-8): ";
 	cin >> opt;
@@ -256,6 +257,7 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 
 	customerList[customerIndex].setAll(firstName, lastName, address, phone, email);
 
+	ID = customerIndex + 1;
 	cout << "ID is " << ID << endl;
 
 	cout << "Enter balance: ";
@@ -287,7 +289,7 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 void viewAccount(const int SIZE, Customer customerList[], int customerIndex, CheckingAccount checkingArr[], int checkingIndex, SavingAccount savingArr[],
 	int savingIndex) { //Views account information
 
-	if (customerIndex < 1) //Makes it so the user can't view accounts that haven't been added yet
+	if (customerIndex < 0) //Makes it so the user can't view accounts that haven't been added yet
 	{
 		cout << "No accounts have been made. Please try again." << endl << endl;
 	}
@@ -341,7 +343,7 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 }
 
 void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex) { // modify/delet
-		if (customerIndex < 0 && customerList[customerIndex].getPhone() == "") {
+	if (customerIndex < 0 && customerList[customerIndex].getPhone() == "") {
 		cout << "No account has been made." << endl;
 	}
 
@@ -903,8 +905,7 @@ void deposit(CheckingAccount checkingArr[], int checkingIndex, SavingAccount sav
 						if (deposit > 0) {
 							savingArr[i].depositMoney(deposit);
 							cout << "------------------------------------------" << endl;
-
-							cout << "- RECEIPT -" << endl;
+							cout << "----------------- RECEIPT ----------------" << endl;
 
 							cout << "DESTINATION ACCOUNT ID: " << savingArr[i].getid() << endl;
 
@@ -916,7 +917,8 @@ void deposit(CheckingAccount checkingArr[], int checkingIndex, SavingAccount sav
 
 							cout << "CUMULATIVE DEPOSITS MADE: " << savingArr[i].getDepositCounter() << endl;
 
-							cout << "----- END OF RECEIPT -----" << endl;
+							cout << "------------- END OF RECEIPT -------------" << endl;
+							cout << "------------------------------------------" << endl;
 						}
 
 						else {
