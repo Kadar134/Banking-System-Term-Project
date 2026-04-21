@@ -19,7 +19,7 @@ public:
 
 	// Internal processees
 	void payInterest();
-	void transfer(double amount, SavingAccount destinationAccount);
+	void transfer(double amount, SavingAccount& destinationAccount);
 };
 
 #endif // !_SAVINGS_ACCOUNT_
