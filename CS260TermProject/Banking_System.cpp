@@ -10,7 +10,7 @@
 void createChecking(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex);
 void createSaving(const int SIZE, Customer customerList[], int& customerIndex, SavingAccount savingArr[], int& savingIndex);
 void viewAccount(const int SIZE, Customer customerList[], int customerIndex, CheckingAccount checkingArr[], int checkingIndex, SavingAccount savingArr[], int savingIndex);
-void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex);
+void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex);
 void transferSavingAccount(const int SIZE, Customer customerList[], int& customerIndex, SavingAccount savingArr[], int& savingIndex);
 
 // Monetary-Based Prototypes
@@ -93,7 +93,7 @@ int main()
 			break;
 
 		case 4: // Modifying/deleting
-			modifyAccount(SIZE, customerList, customerIndex, checkingArr, checkingIndex, savingArr, savingIndex);
+			modifyDeleteAccount(SIZE, customerList, customerIndex, checkingArr, checkingIndex, savingArr, savingIndex);
 			break;
 
 		case 5: // Transferring  accounts (internal)
@@ -151,7 +151,8 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 
 		while (phone.length() != 10) //Makes sure the phone numbers use 10 digits
 		{
-			cout << "Need to pass a number exactly 10 digits in length. Please try again: ";
+			cout << "Need to pass a number exactly 10 digits in length. Please try again." << endl;
+			cout << "Please re-enter phone number : ";
 			cin >> phone;
 		}
 
@@ -175,17 +176,22 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 
 		customerList[customerIndex].setAll(firstName, lastName, address, phone, email);
 
-		ID = customerIndex + 1;
-		cout << "ID is " << ID << endl;
 
 		cout << "Enter balance: ";
 		cin >> balance;
+
+		while (balance < 0) {
+			cout << "Starting balance cannot start negative! Try again." << endl;
+
+			cout << "Please re-enter balance: ";
+			cin >> balance;
+		}
 
 		while (cin.fail()) //Validates if balance uses letters
 		{
 			cin.clear();
 			cin.ignore(1000, '\n');
-			cout << "Need to use numbers. Enter balance: ";
+			cout << "Invalid balance. Please re-enter balance: ";
 			cin >> balance;
 		}
 
@@ -196,11 +202,14 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 		{
 			cin.clear();
 			cin.ignore(1000, '\n');
-			cout << "Need to use numbers. Enter overdraft: ";
+			cout << "Invalid overdraft. Please re-enter overdraft: ";
 			cin >> overdraft;
 		}
 
 		checkingArr[checkingIndex].setAll(ID, balance, &customerList[customerIndex], overdraft);
+
+		ID = customerIndex + 1;
+		cout << "ID is " << ID << endl;
 
 		cout << endl;
 	}
@@ -262,11 +271,19 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 
 	cout << "Enter balance: ";
 	cin >> balance;
+
+	while (balance < 0) {
+		cout << "Starting balance cannot be negative! Try again." << endl;
+
+		cout << "Please re-enter balance: ";
+		cin >> balance;
+	}
+
 	while (cin.fail()) //Validates if balance uses letters
 	{
 		cin.clear();
 		cin.ignore(1000, '\n');
-		cout << "Need to use numbers. Enter balance: ";
+		cout << "Invalid balance. Please re-enter balance: ";
 		cin >> balance;
 	}
 
@@ -277,7 +294,7 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 	{
 		cin.clear();
 		cin.ignore(1000, '\n');
-		cout << "Need to use numbers. Enter interest rate: ";
+		cout << "Invalid interest rate. Please re-enter interest rate: ";
 		cin >> interestRate;
 	}
 
@@ -337,12 +354,12 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 		}
 		else
 		{
-			cout << "You didn't type C or S. Please try again" << endl;
+			cout << "Invalid response. Please input a C or S for checking or saving accounts." << endl;
 		}
 	}
 }
 
-void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex) { // modify/delet
+void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex) { // modify/delet
 	if (customerIndex < 0 && customerList[customerIndex].getPhone() == "") {
 		cout << "No account has been made." << endl;
 	}
