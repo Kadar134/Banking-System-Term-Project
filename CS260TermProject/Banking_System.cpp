@@ -649,7 +649,7 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 					cin.clear();
 					cin.ignore(1000, '\n');
 					cout << "Need to use numbers. Enter an amount: ";
-					cin >> id;
+					cin >> transferAmount;
 				}
 				if (transferAmount <= 0)
 				{
@@ -676,7 +676,6 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 
 void withdraw(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex) { // withdraw 
 	// display accounts
-
 
 	cout << endl;
 }
