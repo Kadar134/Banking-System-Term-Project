@@ -30,7 +30,7 @@ depositToSavings() - Adrianna
 
 // GENERAL
 Debugging/Error Correction - 
-Formatting - 
-Contribution File -
+Formatting - Adrianna
+Contribution File - All
 Submission/Zip File - 
 Beta Testing - All
