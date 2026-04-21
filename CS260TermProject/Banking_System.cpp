@@ -341,7 +341,7 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 }
 
 void modifyAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex) { // modify/delet
-	if (checkingIndex < 0 && checkingArr[checkingIndex].getid() < 1) {
+		if (customerIndex < 0 && customerList[customerIndex].getPhone() == "") {
 		cout << "No account has been made." << endl;
 	}
 
