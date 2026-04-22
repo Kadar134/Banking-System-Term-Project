@@ -649,7 +649,6 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 								counter++;
 								cout << "||========= CURRENT SAVING ACCOUNT " << counter << " =========|| " << endl;
 								savingArr[savingIndex].printInfo();
-								savingArr[savingIndex].
 								
 								cout << "Overdraft limit: $";
 								cout << fixed << showpoint << setprecision(2) << checkingArr[checkingIndex].getOverDraftLimit() << endl;
