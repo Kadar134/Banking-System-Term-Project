@@ -3,7 +3,7 @@
 #include "Customer.h"
 #include <iostream>
 #include <iomanip>
-using namespace std;
+// using namespace std;
 
 // PROTOTYPES
 
@@ -118,9 +118,10 @@ int main()
 
 	cout << "You've chosen to exit the program. Farewell!";
 
-	delete[] customerList;
-	delete[] checkingArr;
-	delete[] savingArr;
+	// release the arrays into the wild and free up memory.
+	delete[SIZE] customerList;
+	delete[SIZE] checkingArr;
+	delete[SIZE] savingArr;
 	return 0;
 }
 
@@ -311,7 +312,7 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 	}
 
 	ID = savingIndex + 1;
-	cout << "Account ID is " << ID << endl;
+	cout << "ID is " << ID << endl;
 
 	savingArr[savingIndex].setAll(ID, balance, &customerList[customerIndex], interestRate);
 	cout << endl;
@@ -331,7 +332,7 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 		string email;
 		bool isViewing;
 
-		cout << "Enter email: " << endl;
+		cout << "Enter email: ";
 		cin >> email;
 
 		for (int i = 0; i < customerIndex; i++) {
@@ -347,19 +348,23 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 			if (accountType == 'C' || accountType == 'c') {
 				for (int i = 0; i < checkingIndex; i++)
 				{
-					cout << "||============= VIEWING ACCOUNT " << i + 1 << " =============||" << endl;
-					customerList[i].printInfo();
+					if (email == checkingArr[i].getCustomer()->getEmail()) {
+						cout << "||============= VIEWING ACCOUNT " << i + 1 << " =============||" << endl;
+						customerList[i].printInfo();
 
-					cout << "ID: " << checkingArr[i].getid() << endl;
+						cout << "ID: " << checkingArr[i].getid() << endl;
 
-					cout << "Balance: $";
-					cout << fixed << showpoint << setprecision(2) << checkingArr[i].getBalance() << endl;
+						cout << "Balance: $";
+						cout << fixed << showpoint << setprecision(2) << checkingArr[i].getBalance() << endl;
 
-					cout << "Overdraft limit: $";
-					cout << fixed << showpoint << setprecision(2) << checkingArr[i].getOverDraftLimit() << endl;
+						cout << "Overdraft limit: $";
+						cout << fixed << showpoint << setprecision(2) << checkingArr[i].getOverDraftLimit() << endl;
 
-					cout << "||============================================||" << endl << endl;
-					cout << "---------------------------------------------" << endl << endl;
+						cout << "||============================================||" << endl << endl;
+						cout << "---------------------------------------------" << endl << endl;
+					}
+					else
+						cout << "There are no emails associated with this email address." << endl;
 				}
 			}
 
@@ -380,6 +385,10 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 
 						cout << "||============================================||" << endl << endl;
 						cout << "---------------------------------------------" << endl << endl;
+					}
+
+					else {
+						cout << "There are no emails associated with this email address." << endl;
 					}
 				}
 			}
@@ -587,18 +596,18 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 
 						int counter = 0;
 						for (int i = 0; i <= checkingIndex; i++) {
-							if (checkingArr[checkingIndex].getCustomer()->getEmail() == customerList[customerIndex].getEmail()) {
+							if (checkingArr[i].getCustomer()->getEmail() == customerList[customerIndex].getEmail()) {
 								counter++;
 								cout << "||======== CURRENT CHECKING ACCOUNT " << counter << "=========|| " << endl;
-								checkingArr[checkingIndex].printInfo();
+								checkingArr[i].printInfo();
 
-								cout << "ID: " << checkingArr[checkingIndex].getid() << endl;
+								cout << "ID: " << checkingArr[i].getid() << endl;
 
 								cout << "Balance: $";
-								cout << fixed << showpoint << setprecision(2) << checkingArr[checkingIndex].getBalance() << endl;
+								cout << fixed << showpoint << setprecision(2) << checkingArr[i].getBalance() << endl;
 
 								cout << "Overdraft limit: $";
-								cout << fixed << showpoint << setprecision(2) << checkingArr[checkingIndex].getOverDraftLimit() << endl;
+								cout << fixed << showpoint << setprecision(2) << checkingArr[i].getOverDraftLimit() << endl;
 								cout << "||========================================||" << endl << endl;
 								cout << "--------------------------------------------" << endl << endl;
 							}
@@ -672,13 +681,19 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 						
 						int counter = 0;
 						for (int i = 0; i <= savingIndex; i++) {
-							if (savingArr[savingIndex].getCustomer()->getEmail() == customerList[customerIndex].getEmail()) {
+							if (savingArr[i].getCustomer()->getEmail() == customerList[customerIndex].getEmail()) {
 								counter++;
 								cout << "||========= CURRENT SAVING ACCOUNT " << counter << " =========|| " << endl;
-								savingArr[savingIndex].printInfo();
+								savingArr[i].printInfo();
 
-								cout << "Overdraft limit: $";
-								cout << fixed << showpoint << setprecision(2) << checkingArr[checkingIndex].getOverDraftLimit() << endl;
+								cout << "ID: " << savingArr[i].getid() << endl;
+
+								cout << "Balance: $";
+								cout << fixed << showpoint << setprecision(2) << savingArr[i].getBalance() << endl;
+
+
+								cout << "Interest Rate: ";
+								cout << fixed << showpoint << setprecision(2) << savingArr[i].getInterestRate() << "%" << endl;
 								cout << "||========================================||" << endl << endl;
 								cout << "--------------------------------------------" << endl << endl;
 							}
@@ -836,18 +851,85 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 						}
 					}
 
-					cout << "Enter the ID number of the account you wish to delete (enter 0 to quit): " << endl;
-					cin >> accountID;
+					char deleteAccount, confirm;
+					cout << "Do you wish to delete a saving account or a checking account? (type S or C, Q to quit): ";
+					cin >> deleteAccount;
 
-					while (accountID < 0 || accountID > customerIndex) {
-						cout << "Invalid. Enter the ID number of the account you wish to delete (enter 0 to quit): ";
-						if (cin.fail()) {
-							cin.clear();
-							cin.ignore(1000, '\n');
-						}
+					if (deleteAccount == 'c' || deleteAccount == 'C') {
+
+						cout << "Enter the ID number of the checking account you wish to delete (enter 0 to quit): " << endl;
 						cin >> accountID;
-					}
 
+						while (accountID < 0 || accountID > checkingIndex) {
+							cout << "Invalid. Enter the ID number of the account you wish to delete (enter 0 to quit): ";
+							if (cin.fail()) {
+								cin.clear();
+								cin.ignore(1000, '\n');
+							}
+							cin >> accountID;
+						}
+
+						for (int i = 0; i < checkingIndex; i++) {
+							if (accountID == checkingArr[i].getid()) {
+								cout << "Do you wish to delete this account? (Y/N): ";
+								cin >> confirm;
+
+								if (confirm == 'y' || confirm == 'Y') {
+									delete[] &checkingArr[i];
+									cout << "Account deleted successfully." << endl;
+									break;
+								}
+
+								else if (confirm == 'n' || confirm == 'N') {
+									cout << "Cancelling deletion." << endl;
+									break;
+								}
+
+								else {
+									cout << "Invalid response, cancelling deletion." << endl;
+									break;
+								}
+							}
+						}
+					}
+					
+					else if (deleteAccount == 's' || deleteAccount == 'S') {
+
+						cout << "Enter the ID number of the saving account you wish to delete (enter 0 to quit): " << endl;
+						cin >> accountID;
+
+						while (accountID < 0 || accountID > savingIndex) {
+							cout << "Invalid. Enter the ID number of the account you wish to delete (enter 0 to quit): ";
+							if (cin.fail()) {
+								cin.clear();
+								cin.ignore(1000, '\n');
+							}
+							cin >> accountID;
+						}
+
+						for (int i = 0; i < savingIndex; i++) {
+							if (accountID == savingArr[savingIndex].getid()) {
+								cout << "Do you wish to delete this account? (Y/N): ";
+								cin >> confirm;
+
+								if (confirm == 'y' || confirm == 'Y') {
+									delete[] &savingArr[i];
+									cout << "Account deleted successfully." << endl;
+									break;
+								}
+
+								else if (confirm == 'n' || confirm == 'N') {
+									cout << "Cancelling deletion." << endl;
+									break;
+								}
+
+								else {
+									cout << "Invalid response, cancelling deletion." << endl;
+									break;
+								}
+							}
+						}
+					}
 					cout << endl;
 				}
 			}
@@ -973,21 +1055,19 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 }
 
 void withdraw(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex) { // withdraw 
-	if (checkingIndex < 1)
-		cout << "No account has been made." << endl;
-	
-	double withdraw;
+
 	int checkingNumber = 1;
 	int withdrawChoice;
+	double withdraw_amount;
 	bool isWithdrawing = true;
 	string email;
 
-	cout << "Enter your email: ";
-	cin >> email;
+	if (checkingIndex < 1)
+		cout << "No account has been made." << endl;
 
-	for (int i = 0; i < checkingIndex; i++)
-	{
-		if (checkingArr[i].getCustomer()->getEmail() == email) {
+	else {
+		for (int i = 0; i < checkingIndex; i++)
+		{
 			cout << "||============= VIEWING ACCOUNT " << checkingNumber << " =============||" << endl;
 			customerList[i].printInfo();
 
@@ -1003,63 +1083,61 @@ void withdraw(const int SIZE, Customer customerList[], int& customerIndex, Check
 			cout << "---------------------------------------------" << endl << endl;
 			checkingNumber++;
 		}
-	}
 
-	if (checkingNumber > 1) {
+		if (checkingNumber > 1) {
 
-		cout << "Enter the ID of the account you wish to withdraw from (type 0 to quit): ";
-		cin >> withdrawChoice;
-
-		cout << endl << "------------------------------------------" << endl;
-
-		while (withdrawChoice < 0 || withdrawChoice > sizeof(checkingArr)) {
-			cout << "Invalid! Please re-enter a valid ID (or type 0 to quit): ";
-
-			if (cin.fail()) {
-				cin.clear();
-				cin.ignore(1000, '\n');
-			}
+			cout << "Enter the ID of the account you wish to withdraw from (type 0 to quit): ";
 			cin >> withdrawChoice;
-		}
 
-		while (isWithdrawing = true) {
-			for (int i = 0; i < checkingIndex; i++) {
-				if (withdrawChoice > 0 && withdrawChoice == checkingArr[i].getid()) {
-					cout << "Enter the amount you would like to withdraw (type -1 to quit): ";
-					cin >> withdraw;
-					
-					if (withdraw == -1)
-						isWithdrawing = false;
+			cout << endl << "------------------------------------------" << endl;
 
-					else if (withdraw <= checkingArr[checkingIndex].getBalance() && withdraw > 0) {
-						checkingArr[checkingIndex].withdrawMoney(withdraw);
+			while (withdrawChoice < 0 || withdrawChoice > sizeof(checkingArr)) {
+				cout << "Invalid! Please re-enter a valid ID (or type 0 to quit): ";
 
-						cout << "---------------------------------------------" << endl << endl;
-						cout << "||================ RECEIPT ================||" << endl << endl;
+				if (cin.fail()) {
+					cin.clear();
+					cin.ignore(1000, '\n');
+				}
+				cin >> withdrawChoice;
+			}
 
-						cout << "SOURCE ACCOUNT ID: " << checkingArr[i].getid() << endl;
+			while (isWithdrawing = true) {
+				for (int i = 0; i < checkingIndex; i++) {
+					if (withdrawChoice > 0 && withdrawChoice == checkingArr[i].getid()) {
+						cout << "Enter the amount you would like to withdraw (type -1 to quit): ";
+						cin >> withdraw_amount;
 
-						cout << "AMOUNT WITHDRAWN: $";
-						cout << fixed << showpoint << setprecision(2) << withdraw << endl;
+						if (withdraw_amount == -1)
+							isWithdrawing = false;
 
-						cout << "UPDATED BALANCE: $";
-						cout << fixed << showpoint << setprecision(2) << checkingArr[i].getBalance() << endl;
+						else if (withdraw_amount <= checkingArr[checkingIndex].getBalance() && withdraw_amount > 0) {
+							checkingArr[checkingIndex].withdrawMoney(withdraw_amount);
 
-						cout << "CUMULATIVE WITHDRAWALS MADE: " << checkingArr[i].getWithdrawCounter() << endl;
+							cout << "---------------------------------------------" << endl << endl;
+							cout << "||================ RECEIPT ================||" << endl << endl;
 
-						cout << "||============ END OF RECEIPT =============||" << endl << endl;
-						cout << "---------------------------------------------" << endl << endl;
+							cout << "SOURCE ACCOUNT ID: " << checkingArr[i].getid() << endl;
+
+							cout << "AMOUNT WITHDRAWN: $";
+							cout << fixed << showpoint << setprecision(2) << withdraw << endl;
+
+							cout << "UPDATED BALANCE: $";
+							cout << fixed << showpoint << setprecision(2) << checkingArr[i].getBalance() << endl;
+
+							cout << "CUMULATIVE WITHDRAWALS MADE: " << checkingArr[i].getWithdrawCounter() << endl;
+
+							cout << "||============ END OF RECEIPT =============||" << endl << endl;
+							cout << "---------------------------------------------" << endl << endl;
+						}
+
+						else
+							cout << "Invalid input." << endl;
 					}
-
-					else
-						cout << "Invalid input." << endl;
 				}
 			}
 		}
 	}
-
-	else
-		cout << "You do not have any checking accounts under this email." << endl;
+	
 }
 
 void deposit(CheckingAccount checkingArr[], int checkingIndex, SavingAccount savingArr[], int savingIndex) {
@@ -1173,8 +1251,8 @@ void deposit(CheckingAccount checkingArr[], int checkingIndex, SavingAccount sav
 				isDepositing = false;
 			}
 
-			else
-				cout << "The only options are C (checking), S (saving), or Q (quit)." << endl;
+		else
+			cout << "The only options are C (checking), S (saving), or Q (quit)." << endl;
 		}
 
 		cout << "Are you depositing money into a checking or a saving account? (type C, S, or Q (quit)): ";
