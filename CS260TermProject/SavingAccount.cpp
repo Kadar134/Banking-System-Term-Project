@@ -1,9 +1,9 @@
-#include "SavingAccount.h"
 #include <iostream>
+#include "SavingAccount.h"
 using namespace std;
 
 // Constructors
-SavingAccount::SavingAccount() : Account() {
+SavingAccount::SavingAccount(): Account() {
 	interestRate = 0;
 }
 
