@@ -325,23 +325,18 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 	{
 		cout << "No accounts have been made. Please try again." << endl << endl;
 	}
-
 	else
 	{
 		char accountType;
-		string email;
-		bool isViewing;
-		int accountNum;
-
-		cout << "Do you want to view checking or savings? (Type C or S. Type Q to quit): ";
+		cout << "Do you want to view checking or savings? (Type C or S): ";
 		cin >> accountType;
 
-		if (accountType == 'C' || accountType == 'c') {
-			accountNum = 1;
-			for (int i = 0; i < checkingIndex; i++)
+		if (accountType == 'C' || accountType == 'c')
+		{
+			for (int i = 0; i <= checkingIndex; i++)
 			{
-				cout << "||============= VIEWING ACCOUNT " << accountNum << " =============||" << endl;
-				checkingArr[i].printInfo();
+				cout << "||============= VIEWING ACCOUNT " << i + 1 << " =============||" << endl;
+				customerList[i].printInfo();
 
 				cout << "ID: " << checkingArr[i].getid() << endl;
 
@@ -349,22 +344,17 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 				cout << fixed << showpoint << setprecision(2) << checkingArr[i].getBalance() << endl;
 
 				cout << "Overdraft limit: $";
-				cout << fixed << showpoint << setprecision(2) << checkingArr[i].getOverDraftLimit() << endl;
+				cout << fixed << showpoint << setprecision(2) << checkingArr[i].getOverDraftLimit();
 
-				cout << "||============================================||" << endl << endl;
-				cout << "---------------------------------------------" << endl << endl;
-				accountNum++;
+				cout << endl << "---------------------------------------------" << endl << endl;
 			}
 		}
-
-
-		else if (accountType == 'S' || accountType == 's') // fix format
+		else if (accountType == 'S' || accountType == 's') 
 		{
-			accountNum = 1;
-			for (int i = 0; i < savingIndex; i++)
+			for (int i = 0; i <= savingIndex; i++)
 			{
-				cout << "||============= VIEWING ACCOUNT " << accountNum << " =============||" << endl;
-				savingArr[i].getCustomer()->printInfo();
+				cout << "||============= VIEWING ACCOUNT " << i + 1 << " =============||" << endl;
+				customerList[i].printInfo();
 
 				cout << "ID: " << savingArr[i].getid() << endl;
 
@@ -373,24 +363,15 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 
 				cout << "Interest rate: " << savingArr[i].getInterestRate() << "%" << endl;
 
-				cout << "||============================================||" << endl << endl;
-				cout << "---------------------------------------------" << endl << endl;
-				accountNum++;
+				cout << endl << "---------------------------------------------" << endl << endl;
 			}
-
 		}
-
-		else if (accountType == 'Q' || accountType == 'q') {
-			isViewing = false;
-		}
-
 		else
 		{
-			cout << "Invalid response. Please input a C or S for checking or saving accounts, or input Q to quit." << endl;
+			cout << "Invalid response. Please input a C or S for checking or saving accounts." << endl;
 		}
 	}
 }
-
 
 void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex) { // modify/delet
 	if (customerIndex < 0 && customerList[customerIndex].getPhone() == "") {
@@ -952,16 +933,15 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 void transferSavingAccount(const int SIZE, Customer customerList[], int& customerIndex, SavingAccount savingArr[], int& savingIndex)
 { // transfer from one saving account to another 
 
-	if (customerIndex < 1)
+	if (customerIndex < 0)
 	{
 		cout << "No account has been made." << endl << endl;
 	}
 	else
 	{
 		double transferAmount;
-		char accountOpt; //Chooses the account you want to transfer to
 		int id;
-		bool foundIDfrom = false, foundIDTo = false;
+		bool foundIDFrom = false, foundIDTo = false;
 		int transferFromIndex = -1, transferToIndex = -1; //Need these to validate if IDs exist
 
 		cout << "Enter ID of the saving account you want to transfer from: ";
@@ -975,17 +955,17 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 			cin >> id;
 		}
 
-		for (int i = 0; i < savingIndex; i++)
+		for (int i = 0; i <= savingIndex; i++)
 		{
 			if (id == savingArr[i].getid()) //Makes sure ID exists in the system
 			{
-				foundIDfrom = true;
+				foundIDFrom = true;
 				transferFromIndex = i; //Saves position of transfer from account
 				break;
 			}
 		}
 
-		if (foundIDfrom == true)
+		if (foundIDFrom == true)
 		{
 			cout << "Enter ID of the saving account you want to transfer to: ";
 			cin >> id;
@@ -997,7 +977,7 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 				cin >> id;
 			}
 
-			for (int i = 0; i < savingIndex; i++)
+			for (int i = 0; i <= savingIndex; i++)
 			{
 				if (id == savingArr[i].getid()) //Makes sure ID exists in the system
 				{
@@ -1029,12 +1009,12 @@ void transferSavingAccount(const int SIZE, Customer customerList[], int& custome
 			}
 			else
 			{
-				cout << "ID does not exist" << endl; //Shows up if second account doesn't exist
+				cout << "Second ID does not exist" << endl; //Shows up if second account doesn't exist
 			}
 		}
 		else
 		{
-			cout << "ID does not exist" << endl; //Shows up if first account doesn't exist
+			cout << "First ID does not exist" << endl; //Shows up if first account doesn't exist
 		}
 
 		cout << endl;
