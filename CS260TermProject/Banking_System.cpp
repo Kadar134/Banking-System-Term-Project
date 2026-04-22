@@ -105,7 +105,7 @@ int main()
 			break;
 
 		case 7: // Deposit Money
-			
+			deposit(checkingArr, checkingIndex, savingArr, savingIndex);
 			break;
 
 		default:
@@ -131,7 +131,7 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 	}
 	else
 	{
-		cout << "- CREATE CHECKING A ACCOUNT -" << endl;
+		cout << "- CREATE A CHECKING ACCOUNT -" << endl;
 
 		customerIndex++;
 		checkingIndex++;
@@ -205,11 +205,11 @@ void createChecking(const int SIZE, Customer customerList[], int& customerIndex,
 			cout << "Invalid overdraft. Please re-enter overdraft: ";
 			cin >> overdraft;
 		}
+		ID = customerIndex + 1;
 
 		checkingArr[checkingIndex].setAll(ID, balance, &customerList[customerIndex], overdraft);
 
-		ID = customerIndex + 1;
-		cout << "ID is " << ID << endl;
+		cout << "Account ID is " << ID << endl;
 
 		cout << endl;
 	}
@@ -224,7 +224,6 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 
 	cout << "- CREATE A SAVING ACCOUNT -" << endl;
 
-	customerIndex++;
 	savingIndex++;
 
 	cout << "Enter first name: ";
@@ -264,10 +263,17 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 	cout << "Enter email: ";
 	cin >> email;
 
-	customerList[customerIndex].setAll(firstName, lastName, address, phone, email);
+	bool isCustomerRegistered = false;
+	for (int i = 0; i < customerIndex; i++) {
+		if (customerList[customerIndex].getEmail() == email)
+			isCustomerRegistered = true;
+	}
 
-	ID = customerIndex + 1;
-	cout << "ID is " << ID << endl;
+	if (isCustomerRegistered = false) {
+		customerIndex++;
+		customerList[customerIndex].setAll(firstName, lastName, address, phone, email);
+	}
+
 
 	cout << "Enter balance: ";
 	cin >> balance;
@@ -298,6 +304,9 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 		cin >> interestRate;
 	}
 
+	ID = customerIndex + 1;
+	cout << "ID is " << ID << endl;
+
 	savingArr[savingIndex].setAll(ID, balance, &customerList[customerIndex], interestRate);
 
 	cout << endl;
@@ -320,7 +329,7 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 		{
 			for (int i = 0; i < checkingIndex; i++)
 			{
-				cout << endl << "- Viewing Account " << i + 1 << " -" << endl;
+				cout << "||============= VIEWING ACCOUNT " << i + 1 << " =============||" << endl;
 				customerList[i].printInfo();
 
 				cout << "ID: " << checkingArr[i].getid() << endl;
@@ -329,17 +338,17 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 				cout << fixed << showpoint << setprecision(2) << checkingArr[i].getBalance() << endl;
 
 				cout << "Overdraft limit: $";
-				cout << fixed << showpoint << setprecision(2) << checkingArr[i].getOverDraftLimit() << endl;
+				cout << fixed << showpoint << setprecision(2) << checkingArr[i].getOverDraftLimit();
 
-				cout << "------------------------------------------" << endl << endl;
+				cout << "||=========================================||" << endl << endl;
+				cout << "---------------------------------------------" << endl << endl;
 			}
 		}
-		else if (accountType == 'S' || accountType == 's')
+		else if (accountType == 'S' || accountType == 's') // fix format
 		{ 
 			for (int i = 0; i < savingIndex; i++)
 			{
-				cout << "------------------------------------------" << endl;
-				cout << endl << "- Viewing Account " << i + 1 << " -" << endl;
+				cout << "||============= VIEWING ACCOUNT " << i + 1 << " =============||" << endl;
 				customerList[i].printInfo();
 
 				cout << "ID: " << savingArr[i].getid() << endl;
@@ -349,7 +358,8 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 
 				cout << "Interest rate: " << savingArr[i].getInterestRate() << "%" << endl;
 
-				cout << "------------------------------------------" << endl << endl;
+				cout << "||=========================================||" << endl << endl;
+				cout << "---------------------------------------------" << endl << endl;
 			}
 		}
 		else
@@ -367,10 +377,12 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 	else {
 		int choice;
 
-		cout << "- MODIFY OR DELETE AN ACCOUNT -" << endl;
-		cout << "1. Modify an account" << endl;
-		cout << "2. Delete an account" << endl;
-		cout << "3. Back to main menu" << endl;
+		cout << "||========== MODIFY OR DELETE ==========||" << endl;
+		cout << "||        1. Modify an Account          ||" << endl;
+		cout << "||        2. Delete an Account          ||" << endl;
+		cout << "||        3. Back to Main Menu          ||" << endl;
+		cout << "||======================================||" << endl;
+
 		cout << "Select a menu option (1-3): ";
 		cin >> choice;
 
@@ -389,11 +401,13 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 			if (choice == 1) { // MODIFICATION
 				int accountChoice;
 
-				cout << "- MODIFY AN ACCOUNT -" << endl;
-				cout << "1. Customer Information" << endl;
-				cout << "2. Checking Accounts" << endl;
-				cout << "3. Saving Accounts" << endl;
-				cout << "4. Go Back" << endl;
+				cout << "||============ MODIFY AN ACCOUNT ==========||" << endl;
+				cout << "||         1. Customer Information         ||" << endl;
+				cout << "||         2. Checking Accounts            ||" << endl;
+				cout << "||         3. Saving Accounts              ||" << endl;
+				cout << "||         4. Back to Previous Menu        ||" << endl;
+				cout << "||=========================================||" << endl;
+
 				cout << "Select a menu option (1-4): ";
 				cin >> accountChoice;
 
@@ -412,16 +426,19 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 					if (accountChoice == 1) {
 						int modifyCustomerChoice;
 
-						cout << "- CURRENT CUSTOMER DETAILS -" << endl;
+						cout << "||======== CURRENT CUSTOMER DETAILS ======||" << endl;
 						customerList[customerIndex].printInfo();
 						cout << endl;
+						cout << "||========================================||" << endl << endl;
+						
+						cout << "||============= MODIFY CUSTOMER ==========||" << endl;
+						cout << "||          1. Customer Name              ||" << endl;
+						cout << "||          2. Home Address               ||" << endl;
+						cout << "||          3. Phone Number               ||" << endl;
+						cout << "||          4. Email Address              ||" << endl;
+						cout << "||          5. Back to Previous Menu      ||" << endl;
+						cout << "||========================================||" << endl;
 
-						cout << "- MODIFY CUSTOMER -" << endl;
-						cout << "1. Customer Name" << endl;
-						cout << "2. Home Address" << endl;
-						cout << "3. Phone Number" << endl;
-						cout << "4. Email Address" << endl;
-						cout << "5. Go Back" << endl;
 						cout << "What would you like to modify? (1-5): ";
 						cin >> modifyCustomerChoice;
 
@@ -509,16 +526,19 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 								cout << endl;
 							}
 
-							cout << "- CURRENT CUSTOMER DETAILS -" << endl;
+							cout << "||======== CURRENT CUSTOMER DETAILS ======||" << endl;
 							customerList[customerIndex].printInfo();
 							cout << endl;
+							cout << "||========================================||" << endl << endl;
 
-							cout << "- MODIFY CUSTOMER -" << endl;
-							cout << "1. Customer Name" << endl;
-							cout << "2. Home Address" << endl;
-							cout << "3. Phone Number" << endl;
-							cout << "4. Email Address" << endl;
-							cout << "5. Go Back" << endl;
+							cout << "||============= MODIFY CUSTOMER ==========||" << endl;
+							cout << "||          1. Customer Name              ||" << endl;
+							cout << "||          2. Home Address               ||" << endl;
+							cout << "||          3. Phone Number               ||" << endl;
+							cout << "||          4. Email Address              ||" << endl;
+							cout << "||          5. Back to Previous Menu      ||" << endl;
+							cout << "||========================================||" << endl;
+
 							cout << "What would you like to modify? (1-5): ";
 							cin >> modifyCustomerChoice;
 
@@ -536,24 +556,35 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 					}
 
 					else if (accountChoice == 2) { // Fix this to include multiple checking accounts.
-						cout << "- CHECKING ACCOUNT INFORMATION -" << endl;
+						cout << "||======== CHECKING ACCOUNT INFORMATION ======||" << endl;
+
 						int counter = 0;
 						for (int i = 0; i <= checkingIndex; i++) {
 							if (checkingArr[checkingIndex].getCustomer()->getEmail() == customerList[customerIndex].getEmail()) {
 								counter++;
-								cout << "- CURRENT CHECKING ACCOUNT -" << counter << endl;
+								cout << "||======== CURRENT CHECKING ACCOUNT " << counter << "=========|| " << endl;
 								checkingArr[checkingIndex].printInfo();
+
+								cout << "ID: " << checkingArr[checkingIndex].getid() << endl;
+
+								cout << "Balance: $";
+								cout << fixed << showpoint << setprecision(2) << checkingArr[checkingIndex].getBalance() << endl;
 
 								cout << "Overdraft limit: $";
 								cout << fixed << showpoint << setprecision(2) << checkingArr[checkingIndex].getOverDraftLimit() << endl;
+								cout << "||========================================||" << endl << endl;
+								cout << "--------------------------------------------" << endl << endl;
 							}
 						}
 						cout << endl;
 
 						int checkingSelection;
-						cout << "- MODIFY CHECKING ACCOUNT -" << endl;
-						cout << "1. Overdraft Limit" << endl;
-						cout << "2. Go Back" << endl;
+
+						cout << "||======== MODIFY CHECKING ACCOUNT ========||" << endl;
+						cout << "||         1. Overdraft Limit              ||" << endl;
+						cout << "||         2. Back to Previous Menu        ||" << endl;
+						cout << "||=========================================||" << endl;
+
 						cout << "What would you like to modify? (1-2): ";
 						cin >> checkingSelection;
 
@@ -588,9 +619,11 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 							else
 								cout << "Invalid input." << endl << endl;
 
-							cout << "- MODIFY CHECKING ACCOUNT -" << endl;
-							cout << "1. Overdraft Limit" << endl;
-							cout << "2. Go Back" << endl;
+							cout << "||======== MODIFY CHECKING ACCOUNT ========||" << endl;
+							cout << "||         1. Overdraft Limit              ||" << endl;
+							cout << "||         2. Back to Previous Menu        ||" << endl;
+							cout << "||=========================================||" << endl;
+
 							cout << "What would you like to modify? (1-2): ";
 							cin >> checkingSelection;
 
@@ -608,8 +641,84 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 					}
 
 					else if (accountChoice == 3) {
-						cout << "- SAVING ACCOUNT INFORMATION -" << endl;
-						// insert info
+						cout << "||========= SAVING ACCOUNT INFORMATION =======||" << endl;
+						
+						int counter = 0;
+						for (int i = 0; i <= savingIndex; i++) {
+							if (savingArr[savingIndex].getCustomer()->getEmail() == customerList[customerIndex].getEmail()) {
+								counter++;
+								cout << "||========= CURRENT SAVING ACCOUNT " << counter << " =========|| " << endl;
+								savingArr[savingIndex].printInfo();
+								savingArr[savingIndex].
+								
+								cout << "Overdraft limit: $";
+								cout << fixed << showpoint << setprecision(2) << checkingArr[checkingIndex].getOverDraftLimit() << endl;
+								cout << "||========================================||" << endl << endl;
+								cout << "--------------------------------------------" << endl << endl;
+							}
+						}
+						cout << endl;
+
+						int checkingSelection;
+
+						cout << "||======== MODIFY CHECKING ACCOUNT ========||" << endl;
+						cout << "||         1. Overdraft Limit              ||" << endl;
+						cout << "||         2. Back to Previous Menu        ||" << endl;
+						cout << "||=========================================||" << endl;
+
+						cout << "What would you like to modify? (1-2): ";
+						cin >> checkingSelection;
+
+						while (checkingSelection < 1 || checkingSelection > 2) {
+							cout << "Invalid. What would you like to modify? (1-2): ";
+							if (cin.fail()) {
+								cin.clear();
+								cin.ignore(1000, '\n');
+							}
+							cin >> checkingSelection;
+						}
+
+						cout << endl;
+
+						while (checkingSelection != 2) {
+							if (checkingSelection == 1) {
+								double overdraft;
+
+								cout << "Enter new overdraft limit: ";
+								cin >> overdraft;
+
+								if (overdraft > 0) {
+									checkingArr[checkingIndex].setOverDraftLimit(overdraft);
+									cout << "Overdraft limit updated." << endl;
+
+								}
+
+								else
+									cout << "Invalid input." << endl << endl;
+							}
+
+							else
+								cout << "Invalid input." << endl << endl;
+
+							cout << "||======== MODIFY CHECKING ACCOUNT ========||" << endl;
+							cout << "||         1. Overdraft Limit              ||" << endl;
+							cout << "||         2. Back to Previous Menu        ||" << endl;
+							cout << "||=========================================||" << endl;
+
+							cout << "What would you like to modify? (1-2): ";
+							cin >> checkingSelection;
+
+							while (checkingSelection < 1 || checkingSelection > 2) {
+								cout << "Invalid. What would you like to modify? (1-2): ";
+								if (cin.fail()) {
+									cin.clear();
+									cin.ignore(1000, '\n');
+								}
+								cin >> checkingSelection;
+							}
+
+							cout << endl;
+						}
 
 						cout << endl;
 					}
@@ -618,11 +727,13 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 						cout << "Enter a valid value." << endl;
 					}
 
-					cout << "- MODIFY AN ACCOUNT -" << endl;
-					cout << "1. Customer Information" << endl;
-					cout << "2. Checking Accounts" << endl;
-					cout << "3. Saving Accounts" << endl;
-					cout << "4. Go Back" << endl;
+					cout << "||============ MODIFY AN ACCOUNT ==========||" << endl;
+					cout << "||         1. Customer Information         ||" << endl;
+					cout << "||         2. Checking Accounts            ||" << endl;
+					cout << "||         3. Saving Accounts              ||" << endl;
+					cout << "||         4. Back to Previous Menu        ||" << endl;
+					cout << "||=========================================||" << endl;
+
 					cout << "Select a menu option (1-4): ";
 					cin >> accountChoice;
 
@@ -715,10 +826,13 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 			else
 				cout << "Invalid option. Please input a valid menu option." << endl << endl;
 
-			cout << "- MODIFY OR DELETE AN ACCOUNT -" << endl;
-			cout << "1. Modify an account" << endl;
-			cout << "2. Delete an account" << endl;
-			cout << "3. Back to main menu" << endl;
+			
+			cout << "||========== MODIFY OR DELETE ==========||" << endl;
+			cout << "||        1. Modify an Account          ||" << endl;
+			cout << "||        2. Delete an Account          ||" << endl;
+			cout << "||        3. Back to Main Menu          ||" << endl;
+			cout << "||======================================||" << endl;
+			
 			cout << "Select a menu option (1-3): ";
 			cin >> choice;
 
