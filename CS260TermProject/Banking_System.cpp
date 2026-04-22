@@ -372,7 +372,7 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 			{
 				for (int i = 0; i < savingIndex; i++)
 				{
-					if (email == savingArr[savingIndex].getCustomer()->getEmail()) {
+					if (email == savingArr[i].getCustomer()->getEmail()) {
 						cout << "||============= VIEWING ACCOUNT " << i + 1 << " =============||" << endl;
 						savingArr[i].getCustomer()->printInfo();
 
