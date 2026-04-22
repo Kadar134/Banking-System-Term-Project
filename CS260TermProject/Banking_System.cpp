@@ -305,7 +305,7 @@ void createSaving(const int SIZE, Customer customerList[], int& customerIndex, S
 	}
 
 	ID = customerIndex + 1;
-	cout << "ID is " << ID << endl;
+	cout << "Account ID is " << ID << endl;
 
 	savingArr[savingIndex].setAll(ID, balance, &customerList[customerIndex], interestRate);
 
