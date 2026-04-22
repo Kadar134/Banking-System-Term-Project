@@ -401,6 +401,9 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 			{
 				cout << "Invalid response. Please input a C or S for checking or saving accounts, or input Q to quit." << endl;
 			}
+
+			cout << "Do you want to view checking or savings? (Type C or S. Type Q to quit): ";
+			cin >> accountType;
 		}
 	}
 }
