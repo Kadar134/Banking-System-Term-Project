@@ -21,8 +21,8 @@ Prototypes - Kadar/Adrianna
 main() - Kadar (switch case); Leila/Adrianna (etc)
 createChecking() - Kadar/Leila
 createSaving() - All
-viewAccountInfo() - Kadar
-modifyAccount() - Adrianna
+viewAccountInfo() - Kadar/Leila
+modifyDeleteAccount() - Adrianna
 transferSavingAccount() - Leila/Kadar
 withdraw() - Adrianna
 deposit() - Adrianna
