@@ -3,7 +3,7 @@
 #include "Customer.h"
 #include <iostream>
 #include <iomanip>
-// using namespace std;
+using namespace std;
 
 // PROTOTYPES
 
@@ -331,82 +331,66 @@ void viewAccount(const int SIZE, Customer customerList[], int customerIndex, Che
 		char accountType;
 		string email;
 		bool isViewing;
+		int accountNum;
 
-		cout << "Enter email: ";
-		cin >> email;
+		cout << "Do you want to view checking or savings? (Type C or S. Type Q to quit): ";
+		cin >> accountType;
 
-		for (int i = 0; i < customerIndex; i++) {
-			if (customerList[customerIndex].getEmail() == email) {
-				isViewing = true;
+		if (accountType == 'C' || accountType == 'c') {
+			accountNum = 1;
+			for (int i = 0; i < checkingIndex; i++)
+			{
+				cout << "||============= VIEWING ACCOUNT " << accountNum << " =============||" << endl;
+				checkingArr[i].printInfo();
+
+				cout << "ID: " << checkingArr[i].getid() << endl;
+
+				cout << "Balance: $";
+				cout << fixed << showpoint << setprecision(2) << checkingArr[i].getBalance() << endl;
+
+				cout << "Overdraft limit: $";
+				cout << fixed << showpoint << setprecision(2) << checkingArr[i].getOverDraftLimit() << endl;
+
+				cout << "||============================================||" << endl << endl;
+				cout << "---------------------------------------------" << endl << endl;
+				accountNum++;
 			}
 		}
 
-		while (isViewing = true) {
-			cout << "Do you want to view checking or savings? (Type C or S. Type Q to quit): ";
-			cin >> accountType;
 
-			if (accountType == 'C' || accountType == 'c') {
-				for (int i = 0; i < checkingIndex; i++)
-				{
-					if (email == checkingArr[i].getCustomer()->getEmail()) {
-						cout << "||============= VIEWING ACCOUNT " << i + 1 << " =============||" << endl;
-						customerList[i].printInfo();
-
-						cout << "ID: " << checkingArr[i].getid() << endl;
-
-						cout << "Balance: $";
-						cout << fixed << showpoint << setprecision(2) << checkingArr[i].getBalance() << endl;
-
-						cout << "Overdraft limit: $";
-						cout << fixed << showpoint << setprecision(2) << checkingArr[i].getOverDraftLimit() << endl;
-
-						cout << "||============================================||" << endl << endl;
-						cout << "---------------------------------------------" << endl << endl;
-					}
-					else
-						cout << "There are no emails associated with this email address." << endl;
-				}
-			}
-
-			else if (accountType == 'S' || accountType == 's') // fix format
+		else if (accountType == 'S' || accountType == 's') // fix format
+		{
+			accountNum = 1;
+			for (int i = 0; i < savingIndex; i++)
 			{
-				for (int i = 0; i < savingIndex; i++)
-				{
-					if (email == savingArr[i].getCustomer()->getEmail()) {
-						cout << "||============= VIEWING ACCOUNT " << i + 1 << " =============||" << endl;
-						savingArr[i].getCustomer()->printInfo();
+				cout << "||============= VIEWING ACCOUNT " << accountNum << " =============||" << endl;
+				savingArr[i].getCustomer()->printInfo();
 
-						cout << "ID: " << savingArr[i].getid() << endl;
+				cout << "ID: " << savingArr[i].getid() << endl;
 
-						cout << "Balance: $";
-						cout << fixed << showpoint << setprecision(2) << savingArr[i].getBalance() << endl;
+				cout << "Balance: $";
+				cout << fixed << showpoint << setprecision(2) << savingArr[i].getBalance() << endl;
 
-						cout << "Interest rate: " << savingArr[i].getInterestRate() << "%" << endl;
+				cout << "Interest rate: " << savingArr[i].getInterestRate() << "%" << endl;
 
-						cout << "||============================================||" << endl << endl;
-						cout << "---------------------------------------------" << endl << endl;
-					}
-
-					else {
-						cout << "There are no emails associated with this email address." << endl;
-					}
-				}
+				cout << "||============================================||" << endl << endl;
+				cout << "---------------------------------------------" << endl << endl;
+				accountNum++;
 			}
 
-			else if (accountType == 'Q' || accountType == 'q') {
-				isViewing = false;
-			}
+		}
 
-			else
-			{
-				cout << "Invalid response. Please input a C or S for checking or saving accounts, or input Q to quit." << endl;
-			}
+		else if (accountType == 'Q' || accountType == 'q') {
+			isViewing = false;
+		}
 
-			cout << "Do you want to view checking or savings? (Type C or S. Type Q to quit): ";
-			cin >> accountType;
+		else
+		{
+			cout << "Invalid response. Please input a C or S for checking or saving accounts, or input Q to quit." << endl;
 		}
 	}
 }
+
 
 void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerIndex, CheckingAccount checkingArr[], int& checkingIndex, SavingAccount savingArr[], int& savingIndex) { // modify/delet
 	if (customerIndex < 0 && customerList[customerIndex].getPhone() == "") {
@@ -703,37 +687,37 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 						}
 						cout << endl;
 
-						int checkingSelection;
+						int savingSelection;
 
-						cout << "||======== MODIFY CHECKING ACCOUNT ========||" << endl;
-						cout << "||         1. Overdraft Limit              ||" << endl;
-						cout << "||         2. Back to Previous Menu        ||" << endl;
-						cout << "||=========================================||" << endl;
+						cout << "||========= MODIFY SAVING ACCOUNT ==========||" << endl;
+						cout << "||          1. Interest Rate                ||" << endl;
+						cout << "||          2. Back to Previous Menu        ||" << endl;
+						cout << "||==========================================||" << endl;
 
 						cout << "What would you like to modify? (1-2): ";
-						cin >> checkingSelection;
+						cin >> savingSelection;
 
-						while (checkingSelection < 1 || checkingSelection > 2) {
+						while (savingSelection < 1 || savingSelection > 2) {
 							cout << "Invalid. What would you like to modify? (1-2): ";
 							if (cin.fail()) {
 								cin.clear();
 								cin.ignore(1000, '\n');
 							}
-							cin >> checkingSelection;
+							cin >> savingSelection;
 						}
 
 						cout << endl;
 
-						while (checkingSelection != 2) {
-							if (checkingSelection == 1) {
-								double overdraft;
+						while (savingSelection != 2) {
+							if (savingSelection == 1) {
+								double interestRate;
 
-								cout << "Enter new overdraft limit: ";
-								cin >> overdraft;
+								cout << "Enter new interest rate: ";
+								cin >> interestRate;
 
-								if (overdraft > 0) {
-									checkingArr[checkingIndex].setOverDraftLimit(overdraft);
-									cout << "Overdraft limit updated." << endl;
+								if (interestRate > 0) {
+									savingArr[savingIndex].setInterestRate(interestRate);
+									cout << "Interest rate updated." << endl;
 
 								}
 
@@ -744,21 +728,21 @@ void modifyDeleteAccount(const int SIZE, Customer customerList[], int& customerI
 							else
 								cout << "Invalid input." << endl << endl;
 
-							cout << "||======== MODIFY CHECKING ACCOUNT ========||" << endl;
-							cout << "||         1. Overdraft Limit              ||" << endl;
-							cout << "||         2. Back to Previous Menu        ||" << endl;
-							cout << "||=========================================||" << endl;
+							cout << "||========= MODIFY SAVING ACCOUNT ==========||" << endl;
+							cout << "||          1. Interest Rate                ||" << endl;
+							cout << "||          2. Back to Previous Menu        ||" << endl;
+							cout << "||==========================================||" << endl;
 
 							cout << "What would you like to modify? (1-2): ";
-							cin >> checkingSelection;
+							cin >> savingSelection;
 
-							while (checkingSelection < 1 || checkingSelection > 2) {
+							while (savingSelection < 1 || savingSelection > 2) {
 								cout << "Invalid. What would you like to modify? (1-2): ";
 								if (cin.fail()) {
 									cin.clear();
 									cin.ignore(1000, '\n');
 								}
-								cin >> checkingSelection;
+								cin >> savingSelection;
 							}
 
 							cout << endl;
